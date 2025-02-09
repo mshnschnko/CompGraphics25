@@ -1,3 +1,6 @@
+#include <d3d11sdklayers.h>
+#include <string>
+
 #include "Renderer.h"
 
 using namespace DirectX;
@@ -195,6 +198,9 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
         return hr;
     }
 
+    const char* vsName = "Vertex Shader";
+    g_pVertexShader->SetPrivateData(WKPDID_D3DDebugObjectName, static_cast<UINT>(strlen(vsName)), vsName);
+
     D3D11_INPUT_ELEMENT_DESC layout[] =
     {
         {"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
@@ -207,6 +213,9 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
     pVSBlob->Release();
     if (FAILED(hr))
         return hr;
+
+    const char* vertexLayoutName = "Input Layout";
+    g_pVertexLayout->SetPrivateData(WKPDID_D3DDebugObjectName, static_cast<UINT>(strlen(vertexLayoutName)), vertexLayoutName);
 
     g_pImmediateContext->IASetInputLayout(g_pVertexLayout);
 
@@ -223,6 +232,9 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
     pPSBlob->Release();
     if (FAILED(hr))
         return hr;
+
+    const char* psName = "Pixel Shader";
+    g_pPixelShader->SetPrivateData(WKPDID_D3DDebugObjectName, static_cast<UINT>(strlen(psName)), psName);
 
     init_time = clock();
 
@@ -368,6 +380,11 @@ void Renderer::HandleInput() {
 }
 
 bool Renderer::Frame() {
+    ID3DUserDefinedAnnotation* pAnnotation = nullptr;
+    if (SUCCEEDED(g_pImmediateContext->QueryInterface(__uuidof(ID3DUserDefinedAnnotation), reinterpret_cast<void**>(&pAnnotation)))) {
+        pAnnotation->BeginEvent(L"Frame Calculation");
+    }
+
     input.ReadMouse();
 
     HandleInput();
@@ -388,17 +405,32 @@ bool Renderer::Frame() {
 
     D3D11_MAPPED_SUBRESOURCE subresource;
     HRESULT hr = g_pImmediateContext->Map(g_pSceneMatrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subresource);
-    if (FAILED(hr))
+    if (FAILED(hr)) {
+        if (pAnnotation) {
+            pAnnotation->EndEvent();
+            pAnnotation->Release();
+        }
         return FAILED(hr);
+    }
 
     SceneMatrixBuffer& sceneBuffer = *reinterpret_cast<SceneMatrixBuffer*>(subresource.pData);
     sceneBuffer.viewProjectionMatrix = XMMatrixMultiply(mView, mProjection);
     g_pImmediateContext->Unmap(g_pSceneMatrixBuffer, 0);
 
+    if (pAnnotation) {
+        pAnnotation->EndEvent();
+        pAnnotation->Release();
+    }
+
     return SUCCEEDED(hr);
 }
 
 void Renderer::Render() {
+    ID3DUserDefinedAnnotation* pAnnotation = nullptr;
+    if (SUCCEEDED(g_pImmediateContext->QueryInterface(__uuidof(ID3DUserDefinedAnnotation), reinterpret_cast<void**>(&pAnnotation)))) {
+        pAnnotation->BeginEvent(L"Rendering");
+    }
+
     g_pImmediateContext->ClearState();
 
     ID3D11RenderTargetView* views[] = { g_pRenderTargetView };
@@ -440,6 +472,11 @@ void Renderer::Render() {
     g_pImmediateContext->DrawIndexed(36, 0, 0);
 
     g_pSwapChain->Present(0, 0);
+
+    if (pAnnotation) {
+        pAnnotation->EndEvent();
+        pAnnotation->Release();
+    }
 }
 
 void Renderer::CleanupDevice() {
