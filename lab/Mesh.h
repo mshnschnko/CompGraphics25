@@ -44,3 +44,5 @@ private:
 	DirectX::XMFLOAT3 m_pRotation = { 0, 0, 0 };
 };
 
+HRESULT CreateCubeMesh(ID3D11Device* device, Mesh &mesh);
+HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color);

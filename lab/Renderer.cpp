@@ -188,40 +188,15 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 
 	init_time = clock();
 
-	const std::vector<SimpleVertex> cube_vertices = {
-		 { -1.0f, 1.0f, -1.0f, RGB(0, 0, 255) },
-		 { 1.0f, 1.0f, -1.0f, RGB(0, 255, 0) },
-		 { 1.0f, 1.0f, 1.0f, RGB(0, 255, 255) },
-		 { -1.0f, 1.0f, 1.0f, RGB(255, 0, 0) },
-		 { -1.0f, -1.0f, -1.0f, RGB(255, 0, 255) },
-		 { 1.0f, -1.0f, -1.0f, RGB(255, 255, 0) },
-		 { 1.0f, -1.0f, 1.0f, RGB(255, 255, 255) },
-		 { -1.0f, -1.0f, 1.0f, RGB(0, 0, 0) }
-	};
-	const std::vector<USHORT> cube_indices = {
-		  3,1,0,
-		  2,1,3,
+	hr = CreateCubeMesh(g_pd3dDevice, m_pCube);
+	if (FAILED(hr)) {
+		return hr;
+	}
 
-		  0,5,4,
-		  1,5,0,
-
-		  3,4,7,
-		  0,4,3,
-
-		  1,6,5,
-		  2,6,1,
-
-		  2,7,6,
-		  3,7,2,
-
-		  6,4,5,
-		  7,4,6,
-	};
-
-	hr = m_pCube.Init(
-		g_pd3dDevice,
-		cube_vertices, cube_indices
-	);
+	hr = CreatePlaneMesh(g_pd3dDevice, m_pPlane, RGB(0, 0, 0));
+	if (FAILED(hr)) {
+		return hr;
+	}
 
 	D3D11_BUFFER_DESC descSMB = {};
 	descSMB.ByteWidth = sizeof(SceneMatrixBuffer);
@@ -288,9 +263,9 @@ bool Renderer::Frame() {
 
 	auto duration = (1.0 * clock() - init_time) / CLOCKS_PER_SEC;
 
-	WorldMatrixBuffer worldMatrixBuffer;
+	// WorldMatrixBuffer worldMatrixBuffer;
 
-	worldMatrixBuffer.worldMatrix = XMMatrixRotationY((float)duration * angle_velocity);
+	// worldMatrixBuffer.worldMatrix = XMMatrixRotationY((float)duration * angle_velocity);
 
 	// g_pImmediateContext->UpdateSubresource(g_pWorldMatrixBuffer, 0, nullptr, &worldMatrixBuffer, 0, 0);
 
@@ -358,6 +333,10 @@ void Renderer::Render() {
 		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer
 	);
 
+	m_pPlane.Render(
+		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer
+	);
+
 	g_pSwapChain->Present(0, 0);
 
 	if (pAnnotation) {
@@ -367,6 +346,9 @@ void Renderer::Render() {
 }
 
 void Renderer::CleanupDevice() {
+	m_pCube.Release();
+	m_pPlane.Release();
+
 	camera.Release();
 	input.Realese();
 	g_pImmediateContext->ClearState();

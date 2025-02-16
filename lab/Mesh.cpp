@@ -109,3 +109,77 @@ void Mesh::Release()
     SAFE_RELEASE(m_pIndexBuffer);
     SAFE_RELEASE(m_pWorldMatrixBuffer);
 }
+
+HRESULT CreateCubeMesh(ID3D11Device* device, Mesh &mesh)
+{
+    std::vector<SimpleVertex> vertices = {
+         { -0.5f, 0.5f, -0.5f, RGB(0, 0, 255) },
+         { 0.5f, 0.5f, -0.5f, RGB(0, 255, 0) },
+         { 0.5f, 0.5f, 0.5f, RGB(0, 255, 255) },
+         { -0.5f, 0.5f, 0.5f, RGB(255, 0, 0) },
+         { -0.5f, -0.5f, -0.5f, RGB(255, 0, 255) },
+         { 0.5f, -0.5f, -0.5f, RGB(255, 255, 0) },
+         { 0.5f, -0.5f, 0.5f, RGB(255, 255, 255) },
+         { -0.5f, -0.5f, 0.5f, RGB(0, 0, 0) }
+    };
+    std::vector<USHORT> indices = {
+          3,1,0,
+          2,1,3,
+
+          0,5,4,
+          1,5,0,
+
+          3,4,7,
+          0,4,3,
+
+          1,6,5,
+          2,6,1,
+
+          2,7,6,
+          3,7,2,
+
+          6,4,5,
+          7,4,6,
+    };
+    return mesh.Init(device, vertices, indices);
+}
+
+HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color)
+{
+    const USHORT size = 5;
+    std::vector<SimpleVertex> vertices;
+    vertices.reserve((size + 1) * (size + 1));
+    for (USHORT i = 0; i < size + 1; i++) {
+        for (USHORT j = 0; j < size + 1; j++) {
+            SimpleVertex v = { static_cast<float>(i), 0.0f, static_cast<float>(j), color};
+            vertices.push_back(v);
+        }
+    }
+   /* std::vector<SimpleVertex> vertices = {
+        {2.0f, 1.0f, 0.0f, color},
+        {2.0f, 0.0f, 0.0f, color},
+        {2.0f, 0.0f, 1.0f, color},
+    };*/
+
+    std::vector<USHORT> indices;
+    indices.reserve(size * size * 6);
+    for (USHORT i = 0; i < size; i++) {
+        for (USHORT j = 0; j < size; j++) {
+            USHORT topLeft = i * (size + 1) + j;
+            USHORT bottomLeft = (i + 1) * (size + 1) + j;
+            USHORT topRight = i * (size + 1) + (j + 1);
+            USHORT bottomRight = (i + 1) * (size + 1) + (j + 1);
+
+            // Two triangles per square
+            indices.push_back(topLeft);
+            indices.push_back(bottomLeft);
+            indices.push_back(topRight);
+
+            indices.push_back(bottomLeft);
+            indices.push_back(bottomRight);
+            indices.push_back(topRight);
+        }
+    }
+    //std::vector<USHORT> indices = { 0, 1, 2 };
+    return mesh.Init(device, vertices, indices);
+}

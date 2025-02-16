@@ -55,6 +55,7 @@ private:
 	ID3D11InputLayout* g_pVertexLayout = nullptr;
 
 	Mesh m_pCube;
+	Mesh m_pPlane;
 	ID3D11Buffer* g_pSceneMatrixBuffer = nullptr;
 	ID3D11RasterizerState* g_pRasterizerState = nullptr;
 
