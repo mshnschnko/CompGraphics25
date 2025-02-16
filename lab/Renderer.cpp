@@ -154,7 +154,8 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 	UINT numElements = ARRAYSIZE(layout);
 
@@ -188,7 +189,7 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 
 	init_time = clock();
 
-	hr = CreateCubeMesh(g_pd3dDevice, m_pCube);
+	hr = CreateCubeMesh(g_pd3dDevice, m_pCube, RGB(52, 81, 29));
 	if (FAILED(hr)) {
 		return hr;
 	}
@@ -220,7 +221,7 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 	descRastr.CullMode = D3D11_CULL_BACK;
 	descRastr.DepthBias = 0;
 	descRastr.DepthBiasClamp = 0.0f;
-	descRastr.FrontCounterClockwise = false;
+	descRastr.FrontCounterClockwise = true;
 	descRastr.DepthClipEnable = true;
 	descRastr.ScissorEnable = false;
 	descRastr.MultisampleEnable = false;

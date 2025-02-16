@@ -5,7 +5,8 @@
 
 struct SimpleVertex
 {
-	float x, y, z;
+	DirectX::XMFLOAT3 position;
+	DirectX::XMFLOAT3 normal;
 	COLORREF color;
 };
 
@@ -45,5 +46,5 @@ private:
 	DirectX::XMFLOAT3 m_pRotation = { 0, 0, 0 };
 };
 
-HRESULT CreateCubeMesh(ID3D11Device* device, Mesh &mesh);
+HRESULT CreateCubeMesh(ID3D11Device* device, Mesh &mesh, COLORREF color);
 HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color);
