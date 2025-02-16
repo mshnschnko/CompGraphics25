@@ -97,10 +97,35 @@ void Mesh::Render(
 
 void Mesh::Rotate(const DirectX::XMFLOAT3 rotation)
 {
+    m_pRotation.x = std::fmodf(rotation.x, DirectX::XM_2PI);
+    m_pRotation.y = std::fmodf(rotation.y, DirectX::XM_2PI);
+    m_pRotation.z = std::fmodf(rotation.z, DirectX::XM_2PI);
+
+    if (m_pRotation.x < 0) {
+        m_pRotation.x += DirectX::XM_2PI;
+    }
+    if (m_pRotation.y < 0) {
+        m_pRotation.y += DirectX::XM_2PI;
+    }
+    if (m_pRotation.z < 0) {
+        m_pRotation.z += DirectX::XM_2PI;
+    }
 }
 
 void Mesh::Translate(const DirectX::XMFLOAT3 translation)
 {
+    m_pPosition.x += translation.x;
+    m_pPosition.y += translation.y;
+    m_pPosition.z += translation.z;
+}
+
+void Mesh::Update(ID3D11DeviceContext* context)
+{
+    auto translationMatrix = DirectX::XMMatrixTranslation(m_pPosition.x, m_pPosition.y, m_pPosition.z);
+    auto rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(m_pRotation.x, m_pRotation.y, m_pRotation.z);
+    WorldMatrixBuffer worldMatrixBuffer;
+    worldMatrixBuffer.worldMatrix = rotationMatrix * translationMatrix;
+    context->UpdateSubresource(m_pWorldMatrixBuffer, 0, nullptr, &worldMatrixBuffer, 0, 0);
 }
 
 void Mesh::Release()
@@ -155,11 +180,6 @@ HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color)
             vertices.push_back(v);
         }
     }
-   /* std::vector<SimpleVertex> vertices = {
-        {2.0f, 1.0f, 0.0f, color},
-        {2.0f, 0.0f, 0.0f, color},
-        {2.0f, 0.0f, 1.0f, color},
-    };*/
 
     std::vector<USHORT> indices;
     indices.reserve(size * size * 6);
@@ -170,7 +190,6 @@ HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color)
             USHORT topRight = i * (size + 1) + (j + 1);
             USHORT bottomRight = (i + 1) * (size + 1) + (j + 1);
 
-            // Two triangles per square
             indices.push_back(topLeft);
             indices.push_back(bottomLeft);
             indices.push_back(topRight);
@@ -180,6 +199,5 @@ HRESULT CreatePlaneMesh(ID3D11Device* device, Mesh& mesh, COLORREF color)
             indices.push_back(topRight);
         }
     }
-    //std::vector<USHORT> indices = { 0, 1, 2 };
     return mesh.Init(device, vertices, indices);
 }

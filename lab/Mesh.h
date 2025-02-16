@@ -31,6 +31,7 @@ public:
 	);
 	void Rotate(const DirectX::XMFLOAT3 rotation);
 	void Translate(const DirectX::XMFLOAT3 translation);
+	void Update(ID3D11DeviceContext* context);
 	void Release();
 private:
 	ID3D11Buffer* m_pVertexBuffer = nullptr;

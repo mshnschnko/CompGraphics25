@@ -8,6 +8,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <vector>
+#include <cmath>
 
 #define SAFE_RELEASE(p)\
 {\

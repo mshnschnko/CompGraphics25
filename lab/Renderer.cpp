@@ -192,11 +192,15 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 	if (FAILED(hr)) {
 		return hr;
 	}
+	m_pCube.Translate({ 0.0f, 2.0f, 0.0f });
+	m_pCube.Update(g_pImmediateContext);
 
 	hr = CreatePlaneMesh(g_pd3dDevice, m_pPlane, RGB(0, 0, 0));
 	if (FAILED(hr)) {
 		return hr;
 	}
+	m_pPlane.Translate({ -2.5f, 0, -2.5f });
+	m_pPlane.Update(g_pImmediateContext);
 
 	D3D11_BUFFER_DESC descSMB = {};
 	descSMB.ByteWidth = sizeof(SceneMatrixBuffer);
@@ -261,13 +265,9 @@ bool Renderer::Frame() {
 	HandleInput();
 	camera.Frame();
 
-	auto duration = (1.0 * clock() - init_time) / CLOCKS_PER_SEC;
-
-	// WorldMatrixBuffer worldMatrixBuffer;
-
-	// worldMatrixBuffer.worldMatrix = XMMatrixRotationY((float)duration * angle_velocity);
-
-	// g_pImmediateContext->UpdateSubresource(g_pWorldMatrixBuffer, 0, nullptr, &worldMatrixBuffer, 0, 0);
+	auto duration = static_cast<float>((1.0 * clock() - init_time) / CLOCKS_PER_SEC);
+	m_pCube.Rotate({0.0f, duration * angle_velocity, 0.0f});
+	m_pCube.Update(g_pImmediateContext);
 
 	XMMATRIX mView;
 	camera.GetBaseViewMatrix(mView);
