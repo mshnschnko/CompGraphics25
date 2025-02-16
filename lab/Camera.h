@@ -11,7 +11,7 @@ class Camera {
 public:
 	HRESULT Init();
 
-	void Realese() {};
+	void Release() {};
 
 	void Frame();
 

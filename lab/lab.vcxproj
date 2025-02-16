@@ -150,6 +150,7 @@ copy "$(ProjectDir)PixelShader.cso" "$(OutDir)PixelShader.cso"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="lab.h" />
@@ -159,6 +160,7 @@ copy "$(ProjectDir)PixelShader.cso" "$(OutDir)PixelShader.cso"
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="lab.cpp" />
     <ClCompile Include="Renderer.cpp" />
