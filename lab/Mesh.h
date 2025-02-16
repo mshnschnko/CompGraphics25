@@ -28,7 +28,8 @@ public:
 		ID3D11VertexShader* vertexShader,
 		ID3D11PixelShader* pixelShader,
 		ID3D11InputLayout* vertexLayout,
-		ID3D11Buffer* sceneMatrixBuffer
+		ID3D11Buffer* sceneMatrixBuffer,
+		ID3D11Buffer* lightsBuffer
 	);
 	void Rotate(const DirectX::XMFLOAT3 rotation);
 	void Translate(const DirectX::XMFLOAT3 translation);

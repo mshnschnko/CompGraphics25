@@ -18,6 +18,7 @@ struct VS_INPUT
 struct PS_INPUT
 {
     float4 position : SV_POSITION;
+    float3 positionL : TEXCOORD0;
     float3 normal : NORMAL;
     float4 color : COLOR;
 };
@@ -28,6 +29,7 @@ PS_INPUT main(VS_INPUT input)
 
     float4 worldPos = mul(worldMatrix, float4(input.position, 1.0));
     output.position = mul(viewProjectionMatrix, worldPos);
+    output.positionL = output.position;
     output.color = input.color;
     output.normal = mul(input.normal, (float3x3)worldMatrix);
     return output;

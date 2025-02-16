@@ -112,26 +112,58 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 		assert(SUCCEEDED(hr));
 	}
 
-	ID3D11Texture2D* pBackBuffer = nullptr;
-	hr = g_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&pBackBuffer));
-	if (FAILED(hr))
-		return hr;
+	if (SUCCEEDED(hr))
+	{
+		hr = SetupBackBuffer();
+	}
 
-	hr = g_pd3dDevice->CreateRenderTargetView(pBackBuffer, nullptr, &g_pRenderTargetView);
-	pBackBuffer->Release();
-	if (FAILED(hr))
-		return hr;
+	// Create blend states
+	if (SUCCEEDED(hr))
+	{
+		D3D11_BLEND_DESC desc = {};
+		desc.AlphaToCoverageEnable = FALSE;
+		desc.IndependentBlendEnable = FALSE;
+		desc.RenderTarget[0].BlendEnable = TRUE;
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_RED | D3D11_COLOR_WRITE_ENABLE_GREEN | D3D11_COLOR_WRITE_ENABLE_BLUE;
+		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		hr = g_pd3dDevice->CreateBlendState(&desc, &g_pTransBlendState);
+		assert(SUCCEEDED(hr));
+		if (SUCCEEDED(hr))
+		{
+			desc.RenderTarget[0].BlendEnable = FALSE;
+			hr = g_pd3dDevice->CreateBlendState(&desc, &g_pOpaqueBlendState);
+		}
+		assert(SUCCEEDED(hr));
+	}
 
-	g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, nullptr);
+	// Create reverse depth state
+	if (SUCCEEDED(hr))
+	{
+		D3D11_DEPTH_STENCIL_DESC desc = {};
+		desc.DepthEnable = TRUE; // Enable depth testing
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL; // Allow writing to the depth buffer
+		desc.DepthFunc = D3D11_COMPARISON_GREATER_EQUAL;
+		desc.StencilEnable = FALSE;
+		hr = g_pd3dDevice->CreateDepthStencilState(&desc, &g_pDepthState);
+		assert(SUCCEEDED(hr));
+	}
 
-	D3D11_VIEWPORT vp;
-	vp.Width = (FLOAT)width;
-	vp.Height = (FLOAT)height;
-	vp.MinDepth = 0.0f;
-	vp.MaxDepth = 1.0f;
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-	g_pImmediateContext->RSSetViewports(1, &vp);
+	// Create reverse transparent depth state
+	if (SUCCEEDED(hr))
+	{
+		D3D11_DEPTH_STENCIL_DESC desc = {};
+		desc.DepthEnable = TRUE;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		desc.DepthFunc = D3D11_COMPARISON_GREATER;
+		desc.StencilEnable = FALSE;
+		hr = g_pd3dDevice->CreateDepthStencilState(&desc, &g_pTransDepthState);
+		assert(SUCCEEDED(hr));
+	}
 
 	ID3DBlob* pVSBlob = nullptr;
 	hr = D3DReadFileToBlob(L"VertexShader.cso", &pVSBlob);
@@ -203,6 +235,11 @@ HRESULT Renderer::InitDevice(const HWND& g_hWnd) {
 	m_pPlane.Translate({ -2.5f, 0, -2.5f });
 	m_pPlane.Update(g_pImmediateContext);
 
+	hr = m_pLight.Init(g_pd3dDevice);
+	if (FAILED(hr)) {
+		return hr;
+	}
+
 	D3D11_BUFFER_DESC descSMB = {};
 	descSMB.ByteWidth = sizeof(SceneMatrixBuffer);
 	descSMB.Usage = D3D11_USAGE_DYNAMIC;
@@ -248,6 +285,45 @@ HRESULT Renderer::Init(const HWND& g_hWnd, const HINSTANCE& g_hInstance, UINT sc
 		return hr;
 
 	return S_OK;
+}
+
+HRESULT Renderer::SetupBackBuffer()
+{
+	ID3D11Texture2D* pBackBuffer = NULL;
+	HRESULT result = g_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+	if (SUCCEEDED(result))
+	{
+		result = g_pd3dDevice->CreateRenderTargetView(pBackBuffer, NULL, &g_pRenderTargetView);
+
+		SAFE_RELEASE(pBackBuffer);
+	}
+	if (SUCCEEDED(result))
+	{
+		D3D11_TEXTURE2D_DESC desc;
+		desc.Format = DXGI_FORMAT_D32_FLOAT;
+		desc.ArraySize = 1;
+		desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		desc.CPUAccessFlags = 0;
+		desc.MiscFlags = 0;
+		desc.SampleDesc.Count = 1;
+		desc.SampleDesc.Quality = 0;
+		desc.Usage = D3D11_USAGE_DEFAULT;
+		desc.Height = input.GetHeight();
+		desc.Width = input.GetWidth();
+		desc.MipLevels = 1;
+
+		result = g_pd3dDevice->CreateTexture2D(&desc, nullptr, &g_pDepthBuffer);
+		assert(SUCCEEDED(result));
+	}
+	if (SUCCEEDED(result))
+	{
+		result = g_pd3dDevice->CreateDepthStencilView(g_pDepthBuffer, nullptr, &g_pDepthBufferDSV);
+		assert(SUCCEEDED(result));
+	}
+
+	assert(SUCCEEDED(result));
+
+	return result;
 }
 
 void Renderer::HandleInput() {
@@ -305,12 +381,12 @@ void Renderer::Render() {
 
 	g_pImmediateContext->ClearState();
 
-	ID3D11RenderTargetView* views[] = { g_pRenderTargetView };
-	g_pImmediateContext->OMSetRenderTargets(1, views, nullptr);
+	ID3D11RenderTargetView* views[] = { g_pRenderTargetView };;
+	g_pImmediateContext->OMSetRenderTargets(1, views, g_pDepthBufferDSV);
 
-	float ClearColor[4] = { (float)0.19, (float)0.84, (float)0.78, (float)1.0 };
-
-	g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
+	static const FLOAT BackColor[4] = { 0.25f, 0.25f, 0.25f, 1.0f };
+	g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, BackColor);
+	g_pImmediateContext->ClearDepthStencilView(g_pDepthBufferDSV, D3D11_CLEAR_DEPTH, 0.0f, 0);
 
 	D3D11_VIEWPORT viewport;
 	viewport.TopLeftX = 0;
@@ -328,15 +404,20 @@ void Renderer::Render() {
 	rect.bottom = input.GetHeight();
 	g_pImmediateContext->RSSetScissorRects(1, &rect);
 
+	g_pImmediateContext->OMSetDepthStencilState(g_pDepthState, 1);
+
 	g_pImmediateContext->RSSetState(g_pRasterizerState);
 
-	m_pCube.Render(
-		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer
-	);
+	g_pImmediateContext->OMSetBlendState(g_pOpaqueBlendState, nullptr, 0xFFFFFFFF);
 
 	m_pPlane.Render(
-		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer
+		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer, m_pLight.Get()
 	);
+
+	m_pCube.Render(
+		g_pImmediateContext, g_pVertexShader, g_pPixelShader, g_pVertexLayout, g_pSceneMatrixBuffer, m_pLight.Get()
+	);
+
 
 	g_pSwapChain->Present(0, 0);
 
@@ -349,6 +430,7 @@ void Renderer::Render() {
 void Renderer::CleanupDevice() {
 	m_pCube.Release();
 	m_pPlane.Release();
+	m_pLight.Release();
 
 	camera.Release();
 	input.Realese();

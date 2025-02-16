@@ -78,7 +78,8 @@ void Mesh::Render(
     ID3D11VertexShader* vertexShader,
     ID3D11PixelShader* pixelShader,
     ID3D11InputLayout* vertexLayout,
-    ID3D11Buffer* sceneMatrixBuffer
+    ID3D11Buffer* sceneMatrixBuffer,
+    ID3D11Buffer* lightsBuffer
 )
 {
     ID3D11Buffer* vertexBuffers[] = { m_pVertexBuffer };
@@ -91,6 +92,7 @@ void Mesh::Render(
     deviceContext->VSSetShader(vertexShader, nullptr, 0);
     deviceContext->VSSetConstantBuffers(0, 1, &m_pWorldMatrixBuffer);
     deviceContext->VSSetConstantBuffers(1, 1, &sceneMatrixBuffer);
+    deviceContext->PSSetConstantBuffers(0, 1, &lightsBuffer);
     deviceContext->PSSetShader(pixelShader, nullptr, 0);
     deviceContext->DrawIndexed(m_pIndexCount, 0, 0);
 }

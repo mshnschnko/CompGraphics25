@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "InputHandler.h"
 #include "Mesh.h"
+#include "Light.h"
 #include "framework.h"
 
 
@@ -25,6 +26,7 @@ public:
 	Renderer(Renderer&&) = delete;
 
 	HRESULT Init(const HWND& g_hWnd, const HINSTANCE& g_hInstance, UINT screenWidth, UINT screenHeight);
+	HRESULT SetupBackBuffer();
 
 	bool Frame();
 
@@ -50,6 +52,15 @@ private:
 	IDXGISwapChain* g_pSwapChain = nullptr;
 	ID3D11RenderTargetView* g_pRenderTargetView = nullptr;
 
+	ID3D11Texture2D* g_pDepthBuffer = nullptr;
+	ID3D11DepthStencilView* g_pDepthBufferDSV = nullptr;
+
+	ID3D11DepthStencilState* g_pDepthState = nullptr;
+	ID3D11DepthStencilState* g_pTransDepthState = nullptr;
+
+	ID3D11BlendState* g_pTransBlendState = nullptr;
+	ID3D11BlendState* g_pOpaqueBlendState = nullptr;
+
 	ID3D11VertexShader* g_pVertexShader = nullptr;
 	ID3D11PixelShader* g_pPixelShader = nullptr;
 	ID3D11InputLayout* g_pVertexLayout = nullptr;
@@ -58,6 +69,8 @@ private:
 	Mesh m_pPlane;
 	ID3D11Buffer* g_pSceneMatrixBuffer = nullptr;
 	ID3D11RasterizerState* g_pRasterizerState = nullptr;
+
+	Light m_pLight;
 
 	std::clock_t init_time;
 	Camera camera;
