@@ -1,36 +1,34 @@
+#include "SceneCB.hlsli"
+
 cbuffer WorldMatrixBuffer : register(b0)
 {
     float4x4 worldMatrix;
-};
-
-cbuffer SceneMatrixBuffer : register(b1)
-{
-    float4x4 viewProjectionMatrix;
+    float4 color;
 };
 
 struct VS_INPUT
 {
     float3 position : POSITION;
-    float3 normal: NORMAL;
-    float4 color : COLOR;
+    float3 normal : NORMAL;
+    float3 tangent : TANGENT;
 };
 
 struct PS_INPUT
 {
     float4 position : SV_POSITION;
-    float3 positionL : TEXCOORD0;
+    float4 worldPos : POSITION;
     float3 normal : NORMAL;
-    float4 color : COLOR;
+    float3 tangent : TANGENT;
 };
 
 PS_INPUT main(VS_INPUT input)
 {
     PS_INPUT output;
-
-    float4 worldPos = mul(worldMatrix, float4(input.position, 1.0));
-    output.position = mul(viewProjectionMatrix, worldPos);
-    output.positionL = output.position;
-    output.color = input.color;
-    output.normal = mul(input.normal, (float3x3)worldMatrix);
+  
+    output.worldPos = mul(worldMatrix, float4(input.position, 1.0f));
+    output.position = mul(viewProjectionMatrix, output.worldPos);
+    output.normal = mul(worldMatrix, input.normal);
+    output.tangent = mul(worldMatrix, input.tangent);
+  
     return output;
 }

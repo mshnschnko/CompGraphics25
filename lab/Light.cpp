@@ -1,39 +1,17 @@
-#include "Light.h"
+#include <cmath>
+#include "light.h"
 
-HRESULT Light::Init(ID3D11Device* device)
-{
-    std::vector<PointLight> lights = {
-    { {1.0f, 2.0f, 1.0f}, {1.0f, 0.0f, 0.0f}, 1.0f, 0.0f },
- // { {2.0f, 2.0f, 2.0f}, {0.0f, 1.0f, 0.0f}, 1.0f, 0.0f },
- // { {0.0f, 2.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, 1.0f, 0.0f }, 
-    };
-    auto lights_size = static_cast<UINT>(sizeof(PointLight) * lights.size());
-    auto lights_p = lights.data();
+void Light::ProvideInput(const InputHandler& input) {
+    std::vector<UINT> keys_codes = { DIKEYBOARD_0,
+      DIKEYBOARD_1, DIKEYBOARD_2, DIKEYBOARD_3,
+      DIKEYBOARD_4, DIKEYBOARD_5, DIKEYBOARD_6,
+      DIKEYBOARD_7, DIKEYBOARD_8, DIKEYBOARD_9 };
 
-    D3D11_BUFFER_DESC bd;
-    ZeroMemory(&bd, sizeof(bd));
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = lights_size;
-    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    bd.CPUAccessFlags = 0;
-    bd.MiscFlags = 0;
-    bd.StructureByteStride = 0;
+    for (int i = 0; i < keys_codes.size(); i++)
+        if (input.IsKeyPressed(keys_codes[i]))
+            sp.SetWColor((float)(std::pow(2, i) - 1.f));
 
-    D3D11_SUBRESOURCE_DATA data;
-    ZeroMemory(&data, sizeof(data));
-    data.pSysMem = lights_p;
-    data.SysMemPitch = lights_size;
-    data.SysMemSlicePitch = 0;
-
-    return device->CreateBuffer(&bd, &data, &m_pLightsBuffer);
-}
-
-ID3D11Buffer* Light::Get()
-{
-    return m_pLightsBuffer;
-}
-
-void Light::Release()
-{
-    SAFE_RELEASE(m_pLightsBuffer);
+    if (input.IsKeyPressed(DIK_L)) {
+        showSource = !showSource;
+    }
 }

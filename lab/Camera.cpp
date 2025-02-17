@@ -3,48 +3,68 @@
 HRESULT Camera::Init() {
     phi = XM_PIDIV4;
     theta = XM_PI/6.0f;
-    distanceToPoint = 4.0f;
+    distanceToPoint = 12.0f;
 
-    pointOfInterest = XMFLOAT3(0.0f, 0.0f, 0.0f);
+    pointOfInterest = XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
+
+    pos = XMVectorAdd(
+        XMVectorScale(
+            XMVectorSet(
+                cosf(theta) * cosf(phi),
+                sinf(theta),
+                cosf(theta) * sinf(phi), 0.0f
+            ), distanceToPoint),
+        pointOfInterest);
+
+    float upTheta = theta + XM_PIDIV2;
+
+    up = XMVectorSet(
+        cosf(upTheta) * cosf(phi),
+        sinf(upTheta),
+        cosf(upTheta) * sinf(phi), 0.0f
+    );
+
+    Frame();
 
     return S_OK;
 }
 
 void Camera::Frame() {
-    XMFLOAT3 pos = XMFLOAT3(
-        cosf(theta) * cosf(phi),
-        sinf(theta),
-        cosf(theta) * sinf(phi)
-    );
+    pos = XMVectorAdd(
+        XMVectorScale(
+            XMVectorSet(
+                cosf(theta) * cosf(phi),
+                sinf(theta),
+                cosf(theta) * sinf(phi), 0.0f
+            ), distanceToPoint),
+        pointOfInterest);
 
-    pos.x = pos.x * distanceToPoint + pointOfInterest.x;
-    pos.y = pos.y * distanceToPoint + pointOfInterest.y;
-    pos.z = pos.z * distanceToPoint + pointOfInterest.z;
-
-    float upTheta = theta + XM_PIDIV2;
-    XMFLOAT3 up = XMFLOAT3(
-        cosf(upTheta) * cosf(phi),
-        sinf(upTheta),
-        cosf(upTheta) * sinf(phi)
-    );
-
-    viewMatrix = DirectX::XMMatrixLookAtLH(
-        DirectX::XMVectorSet(pos.x, pos.y, pos.z, 0.0f),
-        DirectX::XMVectorSet(pointOfInterest.x, pointOfInterest.y, pointOfInterest.z, 0.0f),
-        DirectX::XMVectorSet(up.x, up.y, up.z, 0.0f)
-    );
+    viewMatrix = DirectX::XMMatrixLookAtLH(pos, pointOfInterest, up);
 }
 
 void Camera::GetBaseViewMatrix(XMMATRIX& viewMatrix) {
     viewMatrix = this->viewMatrix;
 };
 
-void Camera::Move(float dx, float dy, float wheel) {
+void Camera::MoveByWheel(float dx, float dy, float wheel) {
     phi -= dx / movement_downshifting;
 
     theta += dy / movement_downshifting;
     theta = min(max(theta, -XM_PIDIV2), XM_PIDIV2);
 
-    distanceToPoint -= wheel / movement_downshifting;
-    distanceToPoint = max(distanceToPoint, 1.0f);
+    distanceToPoint -= wheel / movement_downshifting * 5.0f;
+    distanceToPoint = max(min(distanceToPoint, 100.0f), 1.0f);
+}
+
+void Camera::MoveByKeyboard(float dx, float dy, float dz) {
+    XMVECTOR totalVec = XMVectorSet(dx, 0.0f, dz, 0.0f);
+    auto viewVec = XMVector4Transform(totalVec, XMMatrixInverse(nullptr, viewMatrix));
+
+    dx = XMVectorGetX(viewVec) * 10 / movement_downshifting;
+    dy = dy * 10 / movement_downshifting;
+    dz = XMVectorGetZ(viewVec) * 10 / movement_downshifting;
+
+    auto dVec = XMVectorSet(dx, dy, dz, 0.0f);
+    pointOfInterest = XMVectorAdd(pointOfInterest, dVec);
+    pos = XMVectorAdd(pos, dVec);
 }
