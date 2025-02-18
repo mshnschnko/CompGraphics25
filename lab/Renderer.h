@@ -10,21 +10,11 @@
 
 #include "Camera.h"
 #include "InputHandler.h"
+#include "Scene.h"
+#include "RenderTargetTexture.h"
+#include "Postprocessing.h"
+#include "framework.h"
 
-
-struct SimpleVertex
-{
-	float x, y, z;
-	COLORREF color;
-};
-
-struct WorldMatrixBuffer {
-	XMMATRIX worldMatrix;
-};
-
-struct SceneMatrixBuffer {
-	XMMATRIX viewProjectionMatrix;
-};
 
 class Renderer {
 public:
@@ -36,16 +26,14 @@ public:
 
 	bool Frame();
 
-	void Render();
+	HRESULT Render();
 
 	void CleanupDevice();
 
-	void ResizeWindow(const HWND& g_hWnd);
+	HRESULT ResizeWindow(const HWND& g_hWnd);
 
 private:
 	HRESULT InitDevice(const HWND& g_hWnd);
-
-	HRESULT CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
 
 	void HandleInput();
 
@@ -59,7 +47,8 @@ private:
 	ID3D11DeviceContext1* g_pImmediateContext1 = nullptr;
 	IDXGISwapChain* g_pSwapChain = nullptr;
 	IDXGISwapChain1* g_pSwapChain1 = nullptr;
-	ID3D11RenderTargetView* g_pRenderTargetView = nullptr;
+	RenderTargetTexture* g_pRenderedSceneTexture;
+	RenderTargetTexture* g_pPostProcessedTexture;
 
 	ID3D11VertexShader* g_pVertexShader = nullptr;
 	ID3D11PixelShader* g_pPixelShader = nullptr;
@@ -70,10 +59,10 @@ private:
 	ID3D11Buffer* g_pWorldMatrixBuffer = nullptr;
 	ID3D11Buffer* g_pSceneMatrixBuffer = nullptr;
 	ID3D11RasterizerState* g_pRasterizerState = nullptr;
+	ID3DUserDefinedAnnotation* pAnnotation = nullptr;
 
-	std::clock_t init_time;
 	Camera camera;
 	InputHandler input;
-
-	float angle_velocity = XM_PI;
+	Scene scene;
+	Postprocessing post;
 };

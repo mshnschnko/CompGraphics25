@@ -7,3 +7,14 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <vector>
+#include <cmath>
+
+#define SAFE_RELEASE(p)\
+{\
+    if (p != nullptr)\
+    {\
+        p->Release();\
+        p = nullptr;\
+    }\
+}

@@ -11,17 +11,22 @@ class Camera {
 public:
 	HRESULT Init();
 
-	void Realese() {};
+	void Release() {};
 
 	void Frame();
 
 	void GetBaseViewMatrix(XMMATRIX& viewMatrix);
 
-	void Move(float dx, float dy, float wheel);
+	XMVECTOR GetPos() const { return pos; };
+
+	void MoveByWheel(float dx, float dy, float wheel);
+	void MoveByKeyboard(float dx, float dy, float dz);
 
 private:
 	XMMATRIX viewMatrix;
-	XMFLOAT3 pointOfInterest;
+	XMVECTOR pointOfInterest;
+	XMVECTOR pos;
+	XMVECTOR up;
 
 	float distanceToPoint;
 	float phi;
