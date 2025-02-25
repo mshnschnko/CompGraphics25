@@ -7,7 +7,6 @@
 #include <vector>
 
 #include "materials.h"
-#include "rendered.h"
 #include "geomSphere.h"
 #include "D3DInclude.h"
 #include "input.h"
@@ -17,7 +16,7 @@
 
 using namespace DirectX;
 
-class Sphere : public Rendered, GeomSphere {
+class Sphere : GeomSphere {
 public:
   Sphere() {};
 

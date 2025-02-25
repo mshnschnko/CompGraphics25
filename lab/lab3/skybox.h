@@ -8,12 +8,11 @@
 #include <vector>
 
 #include "geomsphere.h"
-#include "rendered.h"
 #include "texture.h"
 
 using namespace DirectX;
 
-class Skybox : public Rendered, GeomSphere {
+class Skybox : GeomSphere {
 public:
   Skybox() {};
 

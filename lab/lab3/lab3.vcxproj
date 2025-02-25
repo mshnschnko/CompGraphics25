@@ -130,18 +130,21 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.hlsl" "$(OutDir)sphere_PS.hlsl"
-copy "$(ProjectDir)sphere_VS.hlsl" "$(OutDir)sphere_VS.hlsl"
-copy "$(ProjectDir)BrightnessCalc.hlsl" "$(OutDir)BrightnessCalc.hlsl"
-copy "$(ProjectDir)HDR.hlsl" "$(OutDir)HDR.hlsl"
-
-copy "$(ProjectDir)sampling_PS.hlsl" "$(OutDir)sampling_PS.hlsl"
-copy "$(ProjectDir)screen_plane_VS.hlsl" "$(OutDir)screen_plane_VS.hlsl"
-copy "$(ProjectDir)no_lightning_PS.hlsl" "$(OutDir)no_lightning_PS.hlsl"
-copy "$(ProjectDir)no_lightning_VS.hlsl" "$(OutDir)no_lightning_VS.hlsl"
-copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-</Command>
+      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
+copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+copy "$(ProjectDir)skybox.dds" "$(OutDir)skybox.dds"</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <ObjectFileOutput>$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -164,18 +167,21 @@ copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.hlsl" "$(OutDir)sphere_PS.hlsl"
-copy "$(ProjectDir)sphere_VS.hlsl" "$(OutDir)sphere_VS.hlsl"
-copy "$(ProjectDir)BrightnessCalc.hlsl" "$(OutDir)BrightnessCalc.hlsl"
-copy "$(ProjectDir)HDR.hlsl" "$(OutDir)HDR.hlsl"
-
-copy "$(ProjectDir)sampling_PS.hlsl" "$(OutDir)sampling_PS.hlsl"
-copy "$(ProjectDir)screen_plane_VS.hlsl" "$(OutDir)screen_plane_VS.hlsl"
-copy "$(ProjectDir)no_lightning_PS.hlsl" "$(OutDir)no_lightning_PS.hlsl"
-copy "$(ProjectDir)no_lightning_VS.hlsl" "$(OutDir)no_lightning_VS.hlsl"
-copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-</Command>
+      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
+copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+copy "$(ProjectDir)skybox.dds" "$(OutDir)skybox.dds"</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <ObjectFileOutput>$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\ImGUI\imconfig.h" />
@@ -195,7 +201,6 @@ copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
     <ClInclude Include="light.h" />
     <ClInclude Include="materials.h" />
     <ClInclude Include="postprocessing.h" />
-    <ClInclude Include="rendered.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="renderTargetTexture.h" />
     <ClInclude Include="resource1.h" />
@@ -221,7 +226,6 @@ copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="postprocessing.cpp" />
-    <ClCompile Include="rendered.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="renderTargetTexture.cpp" />
     <ClCompile Include="scene.cpp" />

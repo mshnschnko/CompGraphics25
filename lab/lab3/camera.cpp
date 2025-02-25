@@ -63,7 +63,7 @@ void Camera::ProvideInput(const Input& input) {
 void Camera::Rotate(float dx, float dy, float wheel) {
     auto dVec = XMVectorSet(
         -dx,
-        dy,  
+        -dy,  
         0.f,
         0.f);
     auto viewDVec = XMVector4Transform(dVec, XMMatrixInverse(nullptr, viewMatrix));

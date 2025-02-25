@@ -43,12 +43,11 @@ HRESULT Sphere::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scr
   ID3D10Blob* vertexShaderBuffer = nullptr;
   ID3D10Blob* pixelShaderBuffer = nullptr;
 
-  hr = CompileShaderFromFile(L"sphere_VS.hlsl", "main", "vs_5_0", &vertexShaderBuffer);
+  hr = D3DReadFileToBlob(L"sphere_VS.cso", &vertexShaderBuffer);
   if (FAILED(hr))
   {
-    MessageBox(nullptr,
-      L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-    return hr;
+      MessageBox(nullptr, L"The sphere_VS.cso file not found.", L"Error", MB_OK);
+      return hr;
   }
 
   // Create the vertex shader
@@ -59,13 +58,12 @@ HRESULT Sphere::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scr
     return hr;
   }
 
-  // Compile the pixel shader
-  hr = CompileShaderFromFile(L"sphere_PS.hlsl", "main", "ps_5_0", &pixelShaderBuffer);
+  hr = D3DReadFileToBlob(L"sphere_PS.cso", &pixelShaderBuffer);
   if (FAILED(hr))
   {
-    MessageBox(nullptr,
-      L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-    return hr;
+      MessageBox(nullptr,
+          L"The sphere_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
   }
 
   // Create the pixel shader

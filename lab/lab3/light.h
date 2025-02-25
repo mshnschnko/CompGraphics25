@@ -8,12 +8,11 @@
 
 #include "D3DInclude.h"
 #include "geomSphere.h"
-#include "rendered.h"
 #include "input.h"
 
 using namespace DirectX;
 
-class Light : public Rendered, GeomSphere {
+class Light : GeomSphere {
 public:
   Light(XMFLOAT4 color, float xCenter = 0.0f, float yCenter = 0.0f, float zCenter = 0.0f)
     : GeomSphere(6, 6), color(color), pos(XMFLOAT4(xCenter, yCenter, zCenter, 0.0f)){};

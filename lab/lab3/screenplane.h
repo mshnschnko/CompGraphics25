@@ -21,9 +21,7 @@ public:
 		ID3D11Device* pDevice,
 		ID3D11DeviceContext* pContext);
 
-private:
-	HRESULT CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
-	
+private:	
 	struct ProcessTextureVertex
 	{
 		struct

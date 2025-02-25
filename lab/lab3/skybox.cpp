@@ -48,17 +48,24 @@ HRESULT Skybox::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scr
   flags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
-  hr = D3DCompileFromFile(L"skybox_VS.hlsl", NULL, NULL, "main", "vs_5_0", flags, 0, &vertexShaderBuffer, NULL);
+  hr = D3DReadFileToBlob(L"skybox_VS.cso", &vertexShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr, L"The skybox_VS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreateVertexShader(vertexShaderBuffer->GetBufferPointer(), vertexShaderBuffer->GetBufferSize(), NULL, &g_pVertexShader);
   if (FAILED(hr))
     return hr;
-  
-  hr = D3DCompileFromFile(L"skybox_PS.hlsl", NULL, NULL, "main", "ps_5_0", flags, 0, &pixelShaderBuffer, NULL);
+
+  hr = D3DReadFileToBlob(L"skybox_PS.cso", &pixelShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr,
+          L"The skybox_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreatePixelShader(pixelShaderBuffer->GetBufferPointer(), pixelShaderBuffer->GetBufferSize(), NULL, &g_pPixelShader);
   if (FAILED(hr))

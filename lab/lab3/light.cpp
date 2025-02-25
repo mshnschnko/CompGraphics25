@@ -47,17 +47,24 @@ HRESULT Light::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scre
   flags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
-  hr = D3DCompileFromFile(L"no_lightning_VS.hlsl", NULL, NULL, "main", "vs_5_0", flags, 0, &vertexShaderBuffer, NULL);
+  hr = D3DReadFileToBlob(L"no_lightning_VS.cso", &vertexShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr, L"The no_lightning_VS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreateVertexShader(vertexShaderBuffer->GetBufferPointer(), vertexShaderBuffer->GetBufferSize(), NULL, &g_pVertexShader);
   if (FAILED(hr))
     return hr;
 
-  hr = D3DCompileFromFile(L"no_lightning_PS.hlsl", NULL, NULL, "main", "ps_5_0", flags, 0, &pixelShaderBuffer, NULL);
+  hr = D3DReadFileToBlob(L"no_lightning_PS.cso", &pixelShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr,
+          L"The no_lightning_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreatePixelShader(pixelShaderBuffer->GetBufferPointer(), pixelShaderBuffer->GetBufferSize(), NULL, &g_pPixelShader);
   if (FAILED(hr))

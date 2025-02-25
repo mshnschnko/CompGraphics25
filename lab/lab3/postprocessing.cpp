@@ -3,42 +3,6 @@
 
 #include "postprocessing.h"
 
-HRESULT Postprocessing::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
-{
-	HRESULT hr = S_OK;
-
-	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
-#ifdef _DEBUG
-	// Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
-	// Setting this flag improves the shader debugging experience, but still allows 
-	// the shaders to be optimized and to run exactly the way they will run in 
-	// the release configuration of this program.
-	dwShaderFlags |= D3DCOMPILE_DEBUG;
-
-	// Disable optimizations to further improve shader debugging
-	dwShaderFlags |= D3DCOMPILE_SKIP_OPTIMIZATION;
-#endif
-	D3DInclude includeObj;
-
-	ID3DBlob* pErrorBlob = nullptr;
-	hr = D3DCompileFromFile(szFileName, nullptr, &includeObj, szEntryPoint, szShaderModel, dwShaderFlags, 0, ppBlobOut, &pErrorBlob);
-
-	if (FAILED(hr))
-	{
-		if (pErrorBlob)
-		{
-			OutputDebugStringA(reinterpret_cast<const char*>(pErrorBlob->GetBufferPointer()));
-			pErrorBlob->Release();
-		}
-		return hr;
-	}
-
-	if (pErrorBlob)
-		pErrorBlob->Release();
-
-	return S_OK;
-}
-
 Postprocessing::Postprocessing() : maxTextureHeight(0), maxTextureWidth(0) {}
 
 void Postprocessing::Update(
@@ -65,11 +29,11 @@ HRESULT Postprocessing::Init(
 	// create pixel shaders
 	// Compile the pixel shader
 	ID3DBlob* pPSBlob = nullptr;
-	HRESULT hr = CompileShaderFromFile(L"BrightnessCalc.hlsl", "main", "ps_5_0", &pPSBlob);
+	HRESULT hr = D3DReadFileToBlob(L"BrightnessCalc.cso", &pPSBlob);
 	if (FAILED(hr))
 	{
 		MessageBox(nullptr,
-			L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+			L"The BrightnessCalc.cso file not found.", L"Error", MB_OK);
 		return hr;
 	}
 
@@ -82,11 +46,11 @@ HRESULT Postprocessing::Init(
 
 	// Compile the pixel shader
 	pPSBlob = nullptr;
-	hr = CompileShaderFromFile(L"sampling_PS.hlsl", "main", "ps_5_0", &pPSBlob);
+	hr = D3DReadFileToBlob(L"sampling_PS.cso", &pPSBlob);
 	if (FAILED(hr))
 	{
 		MessageBox(nullptr,
-			L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+			L"The sampling_PS.cso file not found.", L"Error", MB_OK);
 		return hr;
 	}
 
@@ -98,11 +62,11 @@ HRESULT Postprocessing::Init(
 
 	// Compile the pixel shader
 	pPSBlob = nullptr;
-	hr = CompileShaderFromFile(L"HDR.hlsl", "main", "ps_5_0", &pPSBlob);
+	hr = D3DReadFileToBlob(L"HDR.cso", &pPSBlob);
 	if (FAILED(hr))
 	{
 		MessageBox(nullptr,
-			L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+			L"The HDR.cso file not found.", L"Error", MB_OK);
 		return hr;
 	}
 
