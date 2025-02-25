@@ -34,35 +34,40 @@ void Camera::Update() {
 }
 
 void Camera::ProvideInput(const Input& input) {
-  // handle camera rotations
-  XMFLOAT3 mouseMove = input.IsMouseUsed();
-  Rotate(mouseMove.x * 4 / MOVEMENT_DOWNSHIFTING, mouseMove.y * 4 / MOVEMENT_DOWNSHIFTING, mouseMove.z * 4 / MOVEMENT_DOWNSHIFTING);
+    // handle camera rotations
+    XMFLOAT3 mouseMove = input.IsMouseUsed();
+    Rotate(mouseMove.x * 4 / MOVEMENT_DOWNSHIFTING, -mouseMove.y * 4 / MOVEMENT_DOWNSHIFTING, mouseMove.z * 4 / MOVEMENT_DOWNSHIFTING);
 
-  float dx = 0, dz = 0;
-  if (input.IsKeyPressed(DIK_W))  // forward
-    dz += 1;
-  if (input.IsKeyPressed(DIK_S))  // backward
-    dz -= 1;
+    float dx = 0, dy = 0, dz = 0;
+    if (input.IsKeyPressed(DIK_W))  // forward
+        dz += 0.5;
+    if (input.IsKeyPressed(DIK_S))  // backward
+        dz -= 0.5;
 
-  if (input.IsKeyPressed(DIK_A))  // right
-    dx -= 1;
-  if (input.IsKeyPressed(DIK_D))  // left
-    dx += 1;
+    if (input.IsKeyPressed(DIK_A))  // left
+        dx -= 0.5;
+    if (input.IsKeyPressed(DIK_D))  // right
+        dx += 0.5;
 
-  XMVECTOR totalVec = XMVectorSet(dx, 0.0f, dz, 0.0f);
-  auto viewVec = XMVector4Transform(totalVec, XMMatrixInverse(nullptr, viewMatrix));
+    if (input.IsKeyPressed(DIK_SPACE))  // up
+        dy += 0.5;
+    if (input.IsKeyPressed(DIK_LSHIFT))  // down
+        dy -= 0.5;
 
-  Move(XMVectorGetX(viewVec) * 30 / MOVEMENT_DOWNSHIFTING, 0, XMVectorGetZ(viewVec) * 30 / MOVEMENT_DOWNSHIFTING);
+    XMVECTOR totalVec = XMVectorSet(dx, dy, dz, 0.0f);
+    auto viewVec = XMVector4Transform(totalVec, XMMatrixInverse(nullptr, viewMatrix));
+
+    Move(XMVectorGetX(viewVec) * 30 / MOVEMENT_DOWNSHIFTING, XMVectorGetY(viewVec) * 30 / MOVEMENT_DOWNSHIFTING, XMVectorGetZ(viewVec) * 30 / MOVEMENT_DOWNSHIFTING);
 }
 
 void Camera::Rotate(float dx, float dy, float wheel) {
-  auto dVec = XMVectorSet(
-    -(float)dx,
-    (float)dy,
-    0.f,
-    0.f);
-  auto viewDVec = XMVector4Transform(dVec, XMMatrixInverse(nullptr, viewMatrix));
-  pointOfInterest = XMVectorAdd(pointOfInterest, viewDVec);
+    auto dVec = XMVectorSet(
+        -dx,
+        dy,  
+        0.f,
+        0.f);
+    auto viewDVec = XMVector4Transform(dVec, XMMatrixInverse(nullptr, viewMatrix));
+    pointOfInterest = XMVectorAdd(pointOfInterest, viewDVec);
 }
 
 

@@ -125,6 +125,23 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)sphere_PS.hlsl" "$(OutDir)sphere_PS.hlsl"
+copy "$(ProjectDir)sphere_VS.hlsl" "$(OutDir)sphere_VS.hlsl"
+copy "$(ProjectDir)BrightnessCalc.hlsl" "$(OutDir)BrightnessCalc.hlsl"
+copy "$(ProjectDir)HDR.hlsl" "$(OutDir)HDR.hlsl"
+
+copy "$(ProjectDir)sampling_PS.hlsl" "$(OutDir)sampling_PS.hlsl"
+copy "$(ProjectDir)screen_plane_VS.hlsl" "$(OutDir)screen_plane_VS.hlsl"
+copy "$(ProjectDir)no_lightning_PS.hlsl" "$(OutDir)no_lightning_PS.hlsl"
+copy "$(ProjectDir)no_lightning_VS.hlsl" "$(OutDir)no_lightning_VS.hlsl"
+copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -142,6 +159,23 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)sphere_PS.hlsl" "$(OutDir)sphere_PS.hlsl"
+copy "$(ProjectDir)sphere_VS.hlsl" "$(OutDir)sphere_VS.hlsl"
+copy "$(ProjectDir)BrightnessCalc.hlsl" "$(OutDir)BrightnessCalc.hlsl"
+copy "$(ProjectDir)HDR.hlsl" "$(OutDir)HDR.hlsl"
+
+copy "$(ProjectDir)sampling_PS.hlsl" "$(OutDir)sampling_PS.hlsl"
+copy "$(ProjectDir)screen_plane_VS.hlsl" "$(OutDir)screen_plane_VS.hlsl"
+copy "$(ProjectDir)no_lightning_PS.hlsl" "$(OutDir)no_lightning_PS.hlsl"
+copy "$(ProjectDir)no_lightning_VS.hlsl" "$(OutDir)no_lightning_VS.hlsl"
+copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\ImGUI\imconfig.h" />
@@ -160,7 +194,6 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="materials.h" />
-    <ClInclude Include="PBRBuffers.h" />
     <ClInclude Include="postprocessing.h" />
     <ClInclude Include="rendered.h" />
     <ClInclude Include="renderer.h" />
@@ -313,6 +346,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PBRBuffers.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

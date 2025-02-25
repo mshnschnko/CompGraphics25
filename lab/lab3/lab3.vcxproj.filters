@@ -153,9 +153,6 @@
     <ClInclude Include="materials.h">
       <Filter>Исходные файлы\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="PBRBuffers.h">
-      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
-    </ClInclude>
     <ClInclude Include="..\libs\ImGUI\imconfig.h">
       <Filter>libs\ImGUI</Filter>
     </ClInclude>
@@ -288,5 +285,10 @@
     <FxCompile Include="no_lightning_PS.hlsl">
       <Filter>Исходные файлы\Shaders\RawColorfulObjs</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PBRBuffers.hlsli">
+      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
+    </None>
   </ItemGroup>
 </Project>
