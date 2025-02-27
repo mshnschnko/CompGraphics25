@@ -114,7 +114,7 @@ void Scene::RenderGUI() {
     ImGui::SliderFloat("Color-R", &lights[i].GetLightColorRef()->x, 0, 1.f);
     ImGui::SliderFloat("Color-G", &lights[i].GetLightColorRef()->y, 0, 1.f);
     ImGui::SliderFloat("Color-B", &lights[i].GetLightColorRef()->z, 0, 1.f);
-    ImGui::SliderFloat("Intensity", &lights[i].GetLightColorRef()->w, 0, 10.0f);
+    ImGui::SliderFloat("Intensity", &lights[i].GetLightColorRef()->w, 0, 100.0f);
     ImGui::SliderFloat("Pos-X", &lights[i].GetLightPositionRef()->x, -100.f, 100.f);
     ImGui::SliderFloat("Pos-Y", &lights[i].GetLightPositionRef()->y, -100.f, 100.f);
     ImGui::SliderFloat("Pos-Z", &lights[i].GetLightPositionRef()->z, -100.f, 100.f);
