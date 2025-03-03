@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\libs\ImGUI\imgui.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGUI\imgui_demo.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGUI\imgui_draw.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGUI\imgui_impl_dx11.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGUI\imgui_impl_win32.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGUI\imgui_widgets.cpp">
+      <Filter>libs\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Исходные файлы\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Исходные файлы\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="geomBox.cpp">
+      <Filter>Исходные файлы\GeomPrimitives\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="geomSphere.cpp">
+      <Filter>Исходные файлы\GeomPrimitives\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>Исходные файлы\Materials\Texture\DDSLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Исходные файлы\Materials\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>Исходные файлы\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderTargetTexture.cpp">
+      <Filter>Исходные файлы\Renderer\RenderTargetTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="postprocessing.cpp">
+      <Filter>Исходные файлы\Renderer\Postprocessing</Filter>
+    </ClCompile>
+    <ClCompile Include="screenplane.cpp">
+      <Filter>Исходные файлы\Renderer\ScreenPlane</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>Исходные файлы\Scene\Rendered light</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DInclude.cpp">
+      <Filter>D3DInclude</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Исходные файлы\Scene\Rendered primitives\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="skybox.cpp">
+      <Filter>Исходные файлы\Scene\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>Исходные файлы\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Исходные файлы\Scene\Rendered primitives\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Исходные файлы\Materials\Texture\HDRLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="HDRCubeMapGenerator.cpp">
+      <Filter>Исходные файлы\Scene\Skybox\HDRCubeMapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="IRRGenerator.cpp">
+      <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libs\ImGUI\imstb_truetype.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imconfig.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imgui.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imgui_impl_dx11.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imgui_impl_win32.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imgui_internal.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imstb_rectpack.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGUI\imstb_textedit.h">
+      <Filter>libs\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Файлы заголвков</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Исходные файлы\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Исходные файлы\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="geomBox.h">
+      <Filter>Исходные файлы\GeomPrimitives\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="geomSphere.h">
+      <Filter>Исходные файлы\GeomPrimitives\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="materials.h">
+      <Filter>Исходные файлы\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h">
+      <Filter>Исходные файлы\Materials\Texture\DDSLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Исходные файлы\Materials\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>Исходные файлы\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderTargetTexture.h">
+      <Filter>Исходные файлы\Renderer\RenderTargetTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="postprocessing.h">
+      <Filter>Исходные файлы\Renderer\Postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="screenplane.h">
+      <Filter>Исходные файлы\Renderer\ScreenPlane</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>Исходные файлы\Scene\Rendered light</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DInclude.h">
+      <Filter>D3DInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Исходные файлы\Scene\Rendered primitives\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="skybox.h">
+      <Filter>Исходные файлы\Scene\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>Исходные файлы\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Исходные файлы\Scene\Rendered primitives\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\stb_image.h">
+      <Filter>libs\STB_Image</Filter>
+    </ClInclude>
+    <ClInclude Include="HDRCubeMapGenerator.h">
+      <Filter>Исходные файлы\Scene\Skybox\HDRCubeMapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="IRRGenerator.h">
+      <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{6064ccfe-3839-4ed7-a4c1-489d02db1176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголвков">
+      <UniqueIdentifier>{49d2309b-6b22-4485-bbc6-d088011f8a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{2a2cb6c8-3f69-4d22-9a4d-cf48360d1a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{42349040-ec79-463b-b21a-c2b8da0522ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\ImGui">
+      <UniqueIdentifier>{45fef27b-93a1-4998-892b-69d88d4731a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Camera">
+      <UniqueIdentifier>{6377f62e-f1ad-4f41-81a0-ac1434059b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Input">
+      <UniqueIdentifier>{29d7b760-9e9a-4dc7-8475-25331b0d9b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GeomPrimitives">
+      <UniqueIdentifier>{9dc1ffa7-1b9e-46e5-a6d6-9d287b5ef859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GeomPrimitives\Box">
+      <UniqueIdentifier>{c874b31d-965a-422b-9d10-7c085d38a3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GeomPrimitives\Sphere">
+      <UniqueIdentifier>{c8b6a8a4-7ff5-4f34-aa35-49e573535889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Materials">
+      <UniqueIdentifier>{bb50f5f3-e0eb-467b-a1fe-9d8e9fe21abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Materials\Texture">
+      <UniqueIdentifier>{1aa4c589-06ad-402a-b588-a0170b25a07d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Materials\Texture\DDSLoader">
+      <UniqueIdentifier>{be1cb8f4-3847-49c5-9f7f-a803bcd4f90b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Renderer">
+      <UniqueIdentifier>{36d0fd6e-1739-4a31-b702-c79aba1b2627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Renderer\RenderTargetTexture">
+      <UniqueIdentifier>{1e014975-28ff-4f58-8ea2-58c45c42bc86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Renderer\Postprocessing">
+      <UniqueIdentifier>{c3b02fe8-c8f9-44d6-9932-a4b7b84c538c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Renderer\ScreenPlane">
+      <UniqueIdentifier>{c3f8d810-90a6-41dc-a42e-6806db41767a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene">
+      <UniqueIdentifier>{48b965e7-1117-4c00-90fc-c1ef4b70fdd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Skybox">
+      <UniqueIdentifier>{c2a7d05e-3cb4-4a85-bbb1-5ba278fcfff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Rendered primitives">
+      <UniqueIdentifier>{09ab362f-c3b8-45c9-90fb-5b3573bc3a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Rendered light">
+      <UniqueIdentifier>{79e722f8-c5df-4283-a896-545215defde3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Rendered primitives\Box">
+      <UniqueIdentifier>{14a8ff32-4898-4450-89a3-cf49a5fbd240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Rendered primitives\Sphere">
+      <UniqueIdentifier>{b2ecf4ea-4176-4480-9fbe-b4f0a31f0dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3DInclude">
+      <UniqueIdentifier>{a2336f1f-30c7-425a-adb6-6fc6e0468c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders">
+      <UniqueIdentifier>{8dedff48-23a4-4456-aa39-cc620f69acbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\Skybox">
+      <UniqueIdentifier>{7c325cb7-359a-4837-bebd-aefc4e937484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\RawColorfulObjs">
+      <UniqueIdentifier>{e4a77607-b939-4c8f-bfd7-882b32a4c21d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\Postprocessing">
+      <UniqueIdentifier>{905864fb-9e1e-459f-a29d-99ef8bbaaee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\Postprocessing\Tonemapping">
+      <UniqueIdentifier>{aaf679ee-f532-4a80-9ad5-8a4b49dc5f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\LightableModels">
+      <UniqueIdentifier>{4262c685-2bfc-4993-aed6-0a7222feb1eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\LightableModels\LightableObjs">
+      <UniqueIdentifier>{dd68fcb2-e1d7-4109-8e42-93e8abd98012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\LightableModels\PBRColorObjs">
+      <UniqueIdentifier>{c468c249-1c56-4f14-9232-32c555cf9cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\STB_Image">
+      <UniqueIdentifier>{1b83a3c0-4b98-444a-896b-232ae4dd8ed7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Materials\Texture\HDRLoader">
+      <UniqueIdentifier>{a5cfc890-80c5-433f-9cf3-c5565623dc64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Skybox\HDRCubeMapGenerator">
+      <UniqueIdentifier>{fcaa87f2-9fa7-4d51-8adf-95a26fec10f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\HDRToCubeMapGenerator">
+      <UniqueIdentifier>{70d735b8-9ab1-49ec-91df-d31519719de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Scene\Skybox\IRRGenerator">
+      <UniqueIdentifier>{37fe1095-ad96-413a-8199-49dc387093a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Shaders\CMToIRRMGenerator">
+      <UniqueIdentifier>{b7434b75-6fc1-4665-a652-bb6ee151aad4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lab4.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="skybox_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\Skybox</Filter>
+    </FxCompile>
+    <FxCompile Include="skybox_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\Skybox</Filter>
+    </FxCompile>
+    <FxCompile Include="no_lightning_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\RawColorfulObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="no_lightning_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\RawColorfulObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="screen_plane_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\Postprocessing</Filter>
+    </FxCompile>
+    <FxCompile Include="sampling_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\Postprocessing\Tonemapping</Filter>
+    </FxCompile>
+    <FxCompile Include="HDR.hlsl">
+      <Filter>Исходные файлы\Shaders\Postprocessing\Tonemapping</Filter>
+    </FxCompile>
+    <FxCompile Include="BrightnessCalc.hlsl">
+      <Filter>Исходные файлы\Shaders\Postprocessing\Tonemapping</Filter>
+    </FxCompile>
+    <FxCompile Include="sphere_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="sphere_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="box_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="box_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>
+    </FxCompile>
+    <FxCompile Include="HDRToCubeMap_VS.hlsl">
+      <Filter>Исходные файлы\Shaders\HDRToCubeMapGenerator</Filter>
+    </FxCompile>
+    <FxCompile Include="HDRToCubeMap_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\HDRToCubeMapGenerator</Filter>
+    </FxCompile>
+    <FxCompile Include="CMToIRRMGenerator_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\CMToIRRMGenerator</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lightCalc.hlsli">
+      <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>
+    </None>
+    <None Include="sceneConstantBuffer.hlsli">
+      <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>
+    </None>
+    <None Include="PBRBuffers.hlsli">
+      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
+    </None>
+  </ItemGroup>
+</Project>
