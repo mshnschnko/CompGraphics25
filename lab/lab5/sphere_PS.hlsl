@@ -1,7 +1,11 @@
-#include "PBRBuffers.hlsli"
+#include "PBRBuffers.h"
 
-TextureCube tex : register (t0);
+TextureCube irrTex : register (t0);
+TextureCube prefTex : register (t1);
+Texture2D brdfTex : register (t2);
+
 SamplerState smplr : register (s0);
+SamplerState brdfSmplr : register (s1);
 
 struct PS_INPUT
 {
@@ -35,6 +39,7 @@ float normalDistribution(float3 wPos, float3 norm, int lightIdx)
 	float3 v = vecToCam(wPos);
 	float3 l = vecToLight(lightPos[lightIdx].xyz, wPos);
 	float3 h = normalize(l + v);
+
 	float alpha = clamp(pbrMaterial.roughness, 0.001f, 1);
 	float alphaSqr = sqr(alpha);
 
@@ -102,18 +107,35 @@ float4 main(PS_INPUT input) : SV_Target0{
 			result_add = F;
 
 		// dot(l, l) = ||l||^2 - как в законе обратных квадратов
-        result += lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * clamp(dot(l, n), 0.0f, 1.0f);
-    }
+		result += clamp(lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * (dot(l, n) > 0), 0.0f, 1.0f);
+	}
 
 	float3 wPos = normalize(input.worldPos.xyz);
 	float3 n = normalize(input.normal.xyz);
-	float3 F = FresnelSchlickRoughnessFunction(wPos, n);
-	float3 kS = F;
-	float3 kD = float3(1.0, 1.0, 1.0) - kS;
-	kD *= 1.0 - pbrMaterial.metalness;
-	float3 irradiance = tex.Sample(smplr, n).rgb;
-	float3 diffuse = irradiance * pbrMaterial.albedo.xyz;
-	float3 ambient = kD * diffuse;
+
+	float3 specular = (0, 0, 0);
+	if (IBLMode != 1 && IBLMode != 3) {     // if not only-diffuse
+		float3 v = vecToCam(input.worldPos.xyz);
+		float3 r = normalize(2.0f * dot(v, n) * n - v);
+		static const float MAX_REFLECTION_LOD = 4.0;
+		float3 prefilteredColor = prefTex.SampleLevel(smplr, r, pbrMaterial.roughness * MAX_REFLECTION_LOD);
+		float3 F0 = lerp(float3(0.04, 0.04, 0.04), pbrMaterial.albedo.xyz, pbrMaterial.metalness);
+		float2 splArg = float2(max(dot(n, v), 0.0), pbrMaterial.roughness);
+		float2 envBRDF = brdfTex.Sample(brdfSmplr, splArg);
+		specular = prefilteredColor * (F0 * envBRDF.x + envBRDF.y);
+	}
+
+	float3 diffuseComponent = (0, 0, 0);
+	if (IBLMode != 2 && IBLMode != 3) {     // if not only-specular
+		float3 F = FresnelSchlickRoughnessFunction(wPos, n);
+		float3 kS = F;
+		float3 kD = float3(1.0, 1.0, 1.0) - kS;
+		kD *= 1.0 - pbrMaterial.metalness;
+		float3 irradiance = irrTex.Sample(smplr, n).rgb;
+		float3 diffuse = irradiance * pbrMaterial.albedo.xyz;
+		diffuseComponent = kD * diffuse;
+	}
+	float3 ambient = diffuseComponent + specular;
 
   return float4(result + ambient, 1);
 }

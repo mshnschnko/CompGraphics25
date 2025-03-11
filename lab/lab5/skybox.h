@@ -8,13 +8,14 @@
 #include <vector>
 
 #include "HDRCubeMapGenerator.h"
-#include "IRRGenerator.h"
+#include "IBLMapsGenerator.h"
 #include "geomsphere.h"
+#include "rendered.h"
 #include "texture.h"
 
 using namespace DirectX;
 
-class Skybox : public GeomSphere {
+class Skybox : public Rendered, GeomSphere {
 public:
   Skybox() {};
 
@@ -33,7 +34,7 @@ public:
 
   bool Update(ID3D11DeviceContext* context, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, XMFLOAT3 cameraPos);
 
-  ID3D11ShaderResourceView* GetIrrSRV() { return irrSRV; }
+  IBLMaps GetMaps() { return maps; }
 
 private:
   struct SBWorldMatrixBuffer {
@@ -62,9 +63,9 @@ private:
 
   // Texture with skybox
   HDRCubeMapGenerator hdrCMgen;
-  IRRGenerator irrMgen;
+  IBLMapsGenerator irrMgen;
   std::wstring txt_path = L".";
   Texture txt;
   ID3D11ShaderResourceView* txtSRV = nullptr;
-  ID3D11ShaderResourceView* irrSRV = nullptr;
+  IBLMaps maps;
 };

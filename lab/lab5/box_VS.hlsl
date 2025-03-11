@@ -1,4 +1,4 @@
-#include "sceneConstantBuffer.hlsli"
+#include "sceneConstantBuffer.h"
 
 // Independet constant buffers for world and view projection matrixes
 cbuffer WorldMatrixBuffer : register (b0)

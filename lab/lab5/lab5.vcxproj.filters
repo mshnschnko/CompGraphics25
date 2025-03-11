@@ -79,6 +79,15 @@
     <ClCompile Include="IRRGenerator.cpp">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="rendered.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="IBLMapsGenerator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\ImGUI\imstb_truetype.h">
@@ -167,6 +176,15 @@
     </ClInclude>
     <ClInclude Include="IRRGenerator.h">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="rendered.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="IBLMapsGenerator.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

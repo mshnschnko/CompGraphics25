@@ -1,4 +1,4 @@
-#include "PBRBuffers.hlsli"
+#include "PBRBuffers.h"
 
 struct VS_INPUT
 {

@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include "rendered.h"
 #include "geomBox.h"
 #include "light.h"
 #include "D3DInclude.h"
@@ -15,7 +16,7 @@
 
 using namespace DirectX;
 
-class Box : public GeomBox {
+class Box : public GeomBox, Rendered {
 private:
   struct Material {
     float shine;
