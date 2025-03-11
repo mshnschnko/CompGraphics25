@@ -124,7 +124,7 @@ HRESULT IBLMapsGenerator::Init(ID3D11Device* device, ID3D11DeviceContext* contex
   hr = D3DReadFileToBlob(L"BRDFGenerator_PS.cso", &BRDFPixelMShaderBuffer);
   if (FAILED(hr))
   {
-      MessageBox(nullptr, L"The CMToIRRMGenerator_PS.cso file not found.", L"Error", MB_OK);
+      MessageBox(nullptr, L"The BRDFGenerator_PS.cso file not found.", L"Error", MB_OK);
       return hr;
   }
   hr = device->CreatePixelShader(BRDFPixelMShaderBuffer->GetBufferPointer(), BRDFPixelMShaderBuffer->GetBufferSize(), NULL, &g_pBRDFPixelShader);

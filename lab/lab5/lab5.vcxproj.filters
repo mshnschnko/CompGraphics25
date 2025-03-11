@@ -354,6 +354,15 @@
     <FxCompile Include="CMToIRRMGenerator_PS.hlsl">
       <Filter>Исходные файлы\Shaders\CMToIRRMGenerator</Filter>
     </FxCompile>
+    <FxCompile Include="IBLMapsGenerator_vs.hlsl">
+      <Filter>Исходные файлы\Shaders\CMToIRRMGenerator</Filter>
+    </FxCompile>
+    <FxCompile Include="CMToPrefilMGenerator_PS.hlsl">
+      <Filter>Исходные файлы\Shaders\CMToIRRMGenerator</Filter>
+    </FxCompile>
+    <FxCompile Include="BRDFGenerator_PS.hlsl">
+      <Filter>Исходные файлы\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="lightCalc.hlsli">
