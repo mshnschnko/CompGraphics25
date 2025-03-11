@@ -24,7 +24,7 @@
     <ProjectGuid>{E157BB9C-6533-487B-9B63-13D5D7FCA2C0}</ProjectGuid>
     <RootNamespace>t4IBLdiff</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>lab4</ProjectName>
+    <ProjectName>lab5</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -247,7 +247,7 @@ copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="lab4.rc" />
+    <ResourceCompile Include="lab5.rc" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="box_PS.hlsl">
