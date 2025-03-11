@@ -87,34 +87,46 @@ HRESULT IBLMapsGenerator::Init(ID3D11Device* device, ID3D11DeviceContext* contex
   flags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
-  HRESULT hr = CompileShaderFromFile(L"IBLMapsGenerator_vs.hlsl", "main", "vs_5_0", &vertexShaderBuffer);
+  HRESULT hr = D3DReadFileToBlob(L"IBLMapsGenerator_vs.cso", &vertexShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr, L"The IBLMapsGenerator_vs.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreateVertexShader(vertexShaderBuffer->GetBufferPointer(), vertexShaderBuffer->GetBufferSize(), NULL, &g_pVertexShader);
   if (FAILED(hr))
     return hr;
 
-  hr = CompileShaderFromFile(L"CMToIRRMGenerator_PS.hlsl", "main", "ps_5_0", &iirPixelShaderBuffer);
+ 
+  hr = D3DReadFileToBlob(L"CMToIRRMGenerator_PS.cso", &iirPixelShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr, L"The CMToIRRMGenerator_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreatePixelShader(iirPixelShaderBuffer->GetBufferPointer(), iirPixelShaderBuffer->GetBufferSize(), NULL, &g_pIrrCMPixelShader);
   if (FAILED(hr))
     return hr;
-
-  hr = CompileShaderFromFile(L"CMToPrefilMGenerator_PS.hlsl", "main", "ps_5_0", &prefilPixelMShaderBuffer);
+  
+  hr = D3DReadFileToBlob(L"CMToPrefilMGenerator_PS.cso", &prefilPixelMShaderBuffer);
   if (FAILED(hr))
-    return hr;
+  {
+      MessageBox(nullptr, L"The CMToPrefilMGenerator_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
 
   hr = device->CreatePixelShader(prefilPixelMShaderBuffer->GetBufferPointer(), prefilPixelMShaderBuffer->GetBufferSize(), NULL, &g_pPrefilPixelShader);
   if (FAILED(hr))
     return hr;
 
-  hr = CompileShaderFromFile(L"BRDFGenerator_PS.hlsl", "main", "ps_5_0", &BRDFPixelMShaderBuffer);
+  hr = D3DReadFileToBlob(L"BRDFGenerator_PS.cso", &BRDFPixelMShaderBuffer);
   if (FAILED(hr))
-    return hr;
-
+  {
+      MessageBox(nullptr, L"The CMToIRRMGenerator_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
+  }
   hr = device->CreatePixelShader(BRDFPixelMShaderBuffer->GetBufferPointer(), BRDFPixelMShaderBuffer->GetBufferSize(), NULL, &g_pBRDFPixelShader);
   if (FAILED(hr))
     return hr;
