@@ -271,6 +271,12 @@ HRESULT Renderer::Init(const HWND& hWnd, const HINSTANCE& hInstance, UINT screen
     return hr;
   pSwapChain->Present(0, 0);
 
+#ifdef _DEBUG
+  hr = DebugEvents::GetInstance().Init(pImmediateContext);
+  if (FAILED(hr))
+    return hr;
+#endif
+
   hr = sc.Init(pd3dDevice, pImmediateContext, screenWidth, screenHeight);
   if (FAILED(hr))
     return hr;
@@ -279,12 +285,6 @@ HRESULT Renderer::Init(const HWND& hWnd, const HINSTANCE& hInstance, UINT screen
   if (FAILED(hr))
     return hr;
 
-#ifdef _DEBUG
-  hr = pImmediateContext->QueryInterface(__uuidof(pAnnotation), reinterpret_cast<void**>(&pAnnotation));
-  if (FAILED(hr))
-    return hr;
-#endif
-    
   InitImGUI(hWnd, pd3dDevice, pImmediateContext);
   return S_OK;
 }
@@ -323,19 +323,17 @@ HRESULT Renderer::Render() {
   pImmediateContext->PSSetShaderResources(0, 1, &nullSRV);
   pRenderedSceneTexture->set(pd3dDevice, pImmediateContext);
 
-#ifdef _DEBUG
-  pAnnotation->BeginEvent((LPCWSTR)(L"Clear background"));
-#endif
+  beginEvent(L"Clear background");
+  
   pRenderedSceneTexture->clear(1.0f, 1.0f, 1.0f, pd3dDevice, pImmediateContext);
   pPostProcessedTexture->clear(1.0f, 1.0f, 1.0f, pd3dDevice, pImmediateContext);
   pImmediateContext->ClearDepthStencilView(pDepthBufferDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-#ifdef _DEBUG
-  pAnnotation->EndEvent();
-#endif
+
+  endEvent();
 
   sc.Render(pImmediateContext);
 
-  PP.applyTonemapEffect(pd3dDevice, pImmediateContext, pAnnotation, pRenderedSceneTexture, pPostProcessedTexture);
+  PP.applyTonemapEffect(pd3dDevice, pImmediateContext, pRenderedSceneTexture, pPostProcessedTexture);
 
   PrepairImGuiFrame();
   sc.RenderGUI();
@@ -353,7 +351,7 @@ void Renderer::CleanupDevice() {
   sc.Release();
 
 #ifdef _DEBUG
-  if (pAnnotation) pAnnotation->Release();
+  DebugEvents::GetInstance().Release();
 #endif
 
   if (pDefaultDepthState) pDefaultDepthState->Release();

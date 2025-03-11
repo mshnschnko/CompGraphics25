@@ -3,6 +3,8 @@
 #include <d3d11.h>
 #include <DirectXMath.h>
 
+#include "common.h"
+
 using namespace DirectX;
 
 class HDRCubeMapGenerator {

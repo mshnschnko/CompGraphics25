@@ -153,11 +153,11 @@ HRESULT Skybox::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scr
   if (FAILED(hr))
     return hr;
 
-  hr = irrMgen.GenerateIrradienceMap(device, context, txtSRV);
+  hr = irrMgen.GenerateMaps(device, context, txtSRV);
   if (FAILED(hr))
     return hr;
 
-  irrSRV = irrMgen.GetIRRMapSRV();
+  maps = irrMgen.GetMaps();
 
 
   // Init sampler

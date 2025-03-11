@@ -5,6 +5,8 @@
 #include <directxmath.h>
 #include <chrono>
 
+#include "common.h"
+
 #include "D3DInclude.h"
 #include "screenplane.h"
 #include "RenderTargetTexture.h"
@@ -26,7 +28,6 @@ public:
 	HRESULT applyTonemapEffect(
 		ID3D11Device* pDevice,
 		ID3D11DeviceContext* pContext,
-		ID3DUserDefinedAnnotation* pAnnotation,
 		RenderTargetTexture* inputRTT,
 		RenderTargetTexture* resultRTT);
 

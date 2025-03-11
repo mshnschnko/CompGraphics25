@@ -1,6 +1,6 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Включаемый файл, созданный в Microsoft Visual C++.
-// Используется t4_IBLdiff.rc
+// Используется t5_IBLspec.rc
 //
 #define IDS_APP_TITLE                   101
 

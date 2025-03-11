@@ -26,10 +26,10 @@ public:
     : GeomSphere(LatLines, intLongLines), pos(pos), radius(radius),
     pbrMaterial(albedo, roughness, metalness)
   {
-    irrSRV = sb.GetIrrSRV();
+    maps = sb.GetMaps();
   };
 
-  HRESULT Update(ID3D11DeviceContext* context, XMMATRIX& viewMatrix, XMMATRIX& projectionMatrix, XMVECTOR& cameraPos, const std::vector<Light>& lights, const PBRMaterial& material, const PBRMode& mode);
+  HRESULT Update(ID3D11DeviceContext* context, XMMATRIX& viewMatrix, XMMATRIX& projectionMatrix, XMVECTOR& cameraPos, const std::vector<Light>& lights, const PBRMaterial& material, const PBRMode& pbrMode, const IBLMode& iblMode);
 
   void ProvideInput(const Input& input);
 
@@ -37,8 +37,8 @@ public:
 
   HRESULT Init(ID3D11Device* device, ID3D11DeviceContext* context, int screenWidth, int screenHeight);
 
-  void SetIrrMapSRV(ID3D11ShaderResourceView* newIrrSRV) {
-    irrSRV = newIrrSRV;
+  void SetIBLMaps(const IBLMaps & _maps) {
+    maps = _maps;
   };
 
   void Release();
@@ -58,6 +58,7 @@ protected:
     XMMATRIX worldMatrix;
     PBRMaterial pbrMaterial;
     PBRMode pbrMode;
+    IBLMode iblMode;
   };
 
   // dx11 vars
@@ -71,13 +72,15 @@ protected:
   ID3D11VertexShader* g_pVertexShader = nullptr;
   ID3D11PixelShader* g_pPixelShader = nullptr;
   ID3D11SamplerState* g_pSamplerState = nullptr;
+  ID3D11SamplerState* g_pBRDFSamplerState = nullptr;
 
   // var for outer resources (no need to release them)
-  ID3D11ShaderResourceView* irrSRV = nullptr;
+  IBLMaps maps;
 
   // Sphere object params
   PBRMaterial pbrMaterial;
   PBRMode pbrMode = PBRMode::allPBR;
+  IBLMode iblMode = IBLMode::full;
   float radius;
   XMFLOAT3 pos;
 };

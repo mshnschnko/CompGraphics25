@@ -12,6 +12,8 @@
 #include "../libs/ImGUI/imgui_impl_dx11.h"
 #include "../libs/ImGUI/imgui_impl_win32.h"
 
+#include "common.h"
+
 #include "camera.h"
 #include "scene.h"
 #include "input.h"
@@ -110,8 +112,6 @@ private:
 
   RenderTargetTexture* pRenderedSceneTexture;
   RenderTargetTexture* pPostProcessedTexture;
-
-  ID3DUserDefinedAnnotation* pAnnotation = nullptr;
 
   // initialization other things (camera, input devices, etc.)
   Camera camera;

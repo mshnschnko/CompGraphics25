@@ -43,8 +43,12 @@ private:
 #endif
   PBRMaterial pbrMaterial;
   PBRMode pbrMode;
+  IBLMode iblMode;
+  bool isOff = true;
+  float intensity = 1.0f;
 
   std::vector<Sphere> spheres;
   std::vector<Light> lights;
   Skybox sb;
+  IBLMaps maps;
 };
