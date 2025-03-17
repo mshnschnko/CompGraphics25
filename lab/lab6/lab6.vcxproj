@@ -24,7 +24,7 @@
     <ProjectGuid>{E157BB9C-6533-487B-9B63-13D5D7FCA2C0}</ProjectGuid>
     <RootNamespace>t4IBLdiff</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>lab5</ProjectName>
+    <ProjectName>lab6</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -371,7 +371,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="lab5.rc" />
+    <ResourceCompile Include="lab6.rc" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="box_PS.hlsl">
