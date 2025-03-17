@@ -314,7 +314,10 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClInclude Include="..\libs\ImGUI\imstb_rectpack.h" />
     <ClInclude Include="..\libs\ImGUI\imstb_textedit.h" />
     <ClInclude Include="..\libs\ImGUI\imstb_truetype.h" />
+    <ClInclude Include="..\libs\json.hpp" />
     <ClInclude Include="..\libs\stb_image.h" />
+    <ClInclude Include="..\libs\stb_image_write.h" />
+    <ClInclude Include="..\libs\tiny_gltf.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="common.h" />
@@ -322,6 +325,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="geomBox.h" />
     <ClInclude Include="geomSphere.h" />
+    <ClInclude Include="gltf_model.h" />
     <ClInclude Include="HDRCubeMapGenerator.h" />
     <ClInclude Include="IBLMapsGenerator.h" />
     <ClInclude Include="input.h" />
@@ -353,6 +357,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="geomBox.cpp" />
     <ClCompile Include="geomSphere.cpp" />
+    <ClCompile Include="gltf_model.cpp" />
     <ClCompile Include="HDRCubeMapGenerator.cpp" />
     <ClCompile Include="IBLMapsGenerator.cpp" />
     <ClCompile Include="input.cpp" />
@@ -513,26 +518,6 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="skybox_VS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="sphere_PS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="sphere_VS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

@@ -88,6 +88,9 @@
     <ClCompile Include="common.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="gltf_model.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\ImGUI\imstb_truetype.h">
@@ -185,6 +188,18 @@
     </ClInclude>
     <ClInclude Include="common.h">
       <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\tiny_gltf.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf_model.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\json.hpp">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\stb_image_write.h">
+      <Filter>libs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,12 +347,6 @@
     </FxCompile>
     <FxCompile Include="BrightnessCalc.hlsl">
       <Filter>Исходные файлы\Shaders\Postprocessing\Tonemapping</Filter>
-    </FxCompile>
-    <FxCompile Include="sphere_PS.hlsl">
-      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
-    </FxCompile>
-    <FxCompile Include="sphere_VS.hlsl">
-      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
     </FxCompile>
     <FxCompile Include="box_VS.hlsl">
       <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>

@@ -41,3 +41,18 @@ private:
 void beginEvent(const wchar_t* str);
 
 void endEvent();
+
+enum ModelViewMode {
+  all = 0,
+  normal = 1,
+  rm = 2,
+  texture = 3
+};
+
+struct ViewMode {
+  int modelViewMode; // 0 - full, 1 - normal, 2 - roughness/metalness, 3 - texture
+
+  bool isPlainNormal;
+  bool isPlainMetalRough;
+  bool isPlainColor;
+};
