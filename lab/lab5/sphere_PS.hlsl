@@ -107,8 +107,8 @@ float4 main(PS_INPUT input) : SV_Target0{
 			result_add = F;
 
 		// dot(l, l) = ||l||^2 - как в законе обратных квадратов
-		result += clamp(lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * (dot(l, n) > 0), 0.0f, 1.0f);
-	}
+        result += lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * clamp(dot(l, n), 0.0f, 1.0f);
+    }
 
 	float3 wPos = normalize(input.worldPos.xyz);
 	float3 n = normalize(input.normal.xyz);
