@@ -96,26 +96,43 @@
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
-copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+      <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
+
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
+
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
+
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
+
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
+
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
+
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
+
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal_misty_morning_puresky_4k.hdr"</Command>
+
+copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,26 +152,43 @@ copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
-copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+      <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
+
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
+
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
+
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
+
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
+
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
+
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
+
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal_misty_morning_puresky_4k.hdr"</Command>
+
+copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -173,25 +207,43 @@ copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal
       <ObjectFileOutput>$(ProjectDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
-copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+      <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
+
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
+
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
+
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
+
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
+
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
+
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal_misty_morning_puresky_4k.hdr"</Command>
+
+copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
+
+copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -211,25 +263,43 @@ copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)sphere_PS.cso" "$(OutDir)sphere_PS.cso"
-copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+      <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
+
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
+
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
+
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
+
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
+
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
+
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
+
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
+
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
+
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
+
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
+
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
+
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
+
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
+
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
+
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-copy "$(ProjectDir)kloofendal_misty_morning_puresky_4k.hdr" "$(OutDir)kloofendal_misty_morning_puresky_4k.hdr"</Command>
+
+copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
+
+copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
     </PostBuildEvent>
     <FxCompile>
       <ObjectFileOutput>$(ProjectDir)%(Filename).cso</ObjectFileOutput>
