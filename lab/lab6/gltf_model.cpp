@@ -379,30 +379,29 @@ HRESULT Model::InitShadersPipeline(ID3D11Device* device) {
   ID3D10Blob* vertexShaderBuffer = nullptr;
   ID3D10Blob* pixelShaderBuffer = nullptr;
 
-  HRESULT hr = CompileShaderFromFile(L"pbrLightable_VS.hlsl", "main", "vs_5_0", &vertexShaderBuffer);
+  HRESULT hr = D3DReadFileToBlob(L"pbrLightable_VS.cso", &vertexShaderBuffer);
   if (FAILED(hr))
   {
-    MessageBox(nullptr,
-      L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-    return hr;
+      MessageBox(nullptr, L"The pbrLightable_VS.cso file not found.", L"Error", MB_OK);
+      return hr;
   }
 
   // Create the vertex shader
   hr = device->CreateVertexShader(vertexShaderBuffer->GetBufferPointer(), vertexShaderBuffer->GetBufferSize(), nullptr, &g_pVertexShader);
   if (FAILED(hr))
   {
-    vertexShaderBuffer->Release();
-    return hr;
+      vertexShaderBuffer->Release();
+      return hr;
   }
 
   // Compile the pixel shader
-  hr = CompileShaderFromFile(L"pbrLightable_PS.hlsl", "main", "ps_5_0", &pixelShaderBuffer);
+  D3DReadFileToBlob(L"pbrLightable_PS.cso", &pixelShaderBuffer);
   if (FAILED(hr))
   {
-    MessageBox(nullptr,
-      L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-    return hr;
+      MessageBox(nullptr, L"The pbrLightable_PS.cso file not found.", L"Error", MB_OK);
+      return hr;
   }
+
 
   // Create the pixel shader
   hr = device->CreatePixelShader(pixelShaderBuffer->GetBufferPointer(), pixelShaderBuffer->GetBufferSize(), nullptr, &g_pPixelShader);

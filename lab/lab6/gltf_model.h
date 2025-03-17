@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "rendered.h"
 #include "materials.h"
 #include "common.h"
 #include "light.h"
@@ -15,7 +14,7 @@
 
 
 
-class Model : public Rendered {
+class Model {
 public:
   Model() = default;
 
