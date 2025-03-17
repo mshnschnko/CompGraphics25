@@ -5,7 +5,7 @@ HRESULT Scene::Init(ID3D11Device* device, ID3D11DeviceContext* context, int scre
   HRESULT hr = S_OK;
 
   //sb = Skybox(L"skybox.dds", 30, 30);
-  sb = Skybox(L"cobblestone_street_night_4k.hdr", 30, 30);
+  sb = Skybox(L"wildflower_field_4k.hdr", 30, 30);
   hr = sb.Init(device, context, screenWidth, screenHeight);
   if (FAILED(hr))
     return hr;
