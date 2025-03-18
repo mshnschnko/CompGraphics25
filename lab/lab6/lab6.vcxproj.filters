@@ -79,9 +79,6 @@
     <ClCompile Include="IRRGenerator.cpp">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="rendered.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="IBLMapsGenerator.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -179,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="IRRGenerator.h">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
-    </ClInclude>
-    <ClInclude Include="rendered.h">
-      <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="IBLMapsGenerator.h">
       <Filter>libs</Filter>
@@ -372,6 +366,8 @@
     <FxCompile Include="BRDFGenerator_PS.hlsl">
       <Filter>Исходные файлы\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="pbrLightable_PS.hlsl" />
+    <FxCompile Include="pbrLightable_VS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lightCalc.hlsli">
