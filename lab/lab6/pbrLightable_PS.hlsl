@@ -100,7 +100,7 @@ float3 CountPBRColor(float3 wPos, float3 n, float3 v, float roughness, float met
 		result_add = (1 - F) * albedo / 3.1415926 * (1 - metalness) + D * F * G / (0.001f + 4 * (posDot(l, n) * posDot(v, n)));
 		
 		// dot(l, l) = ||l||^2 - как в законе обратных квадратов
-		result += clamp(lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * (dot(l, n) > 0), 0.0f, 1.0f);
+        result += lightColor[i] * result_add * lightColor[i].w / (dot(l, l) + 0.01f) * clamp(dot(l, n), 0.0f, 1.0f);
 	}
 
 	// Count IBL specular part
