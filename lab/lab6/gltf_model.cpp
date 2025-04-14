@@ -43,7 +43,7 @@ HRESULT Model::InitTexture(ID3D11Device* device, size_t imgId) {
   if ((model.images[imgId].pixel_type == TINYGLTF_COMPONENT_TYPE_FLOAT) && (model.images[imgId].component = 4))
     format = DXGI_FORMAT_R32G32B32A32_FLOAT;
   else if ((model.images[imgId].pixel_type == TINYGLTF_COMPONENT_TYPE_UNSIGNED_BYTE) && (model.images[imgId].component = 4))
-    format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
   else
     return E_FAIL;
 
