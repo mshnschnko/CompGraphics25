@@ -14,9 +14,9 @@ struct IBLMaps {
 class IBLMapsGenerator {
 public:
 	IBLMapsGenerator() {
-		N1 = 300;
-		N2 = 300;
-		g_irradienceTextureSize = 32;
+		N1 = 200;
+		N2 = 50;
+		g_irradienceTextureSize = 16;
 		g_prefilTextureSize = 128;
 		g_BRDFTextureSize = 128;
 		g_prefilMipMapLevels = 5;

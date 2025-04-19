@@ -1,0 +1,11 @@
+Model Information:
+* title:	PBR Low-poly Fox Character
+* source:	https://sketchfab.com/3d-models/pbr-low-poly-fox-character-88ed6191446749b9a9e24b995bcb5e1d
+* author:	Ida Faber (https://sketchfab.com/Ida..Faber)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PBR Low-poly Fox Character" (https://sketchfab.com/3d-models/pbr-low-poly-fox-character-88ed6191446749b9a9e24b995bcb5e1d) by Ida Faber (https://sketchfab.com/Ida..Faber) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

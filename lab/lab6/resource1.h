@@ -1,6 +1,6 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Включаемый файл, созданный в Microsoft Visual C++.
-// Используется t5_IBLspec.rc
+// Используется t6_gltf.rc
 //
 #define IDS_APP_TITLE                   101
 

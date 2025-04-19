@@ -10,12 +10,11 @@
 #include "HDRCubeMapGenerator.h"
 #include "IBLMapsGenerator.h"
 #include "geomsphere.h"
-#include "rendered.h"
 #include "texture.h"
 
 using namespace DirectX;
 
-class Skybox : public Rendered, GeomSphere {
+class Skybox : public GeomSphere {
 public:
   Skybox() {};
 

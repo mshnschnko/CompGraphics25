@@ -24,7 +24,7 @@
     <ProjectGuid>{E157BB9C-6533-487B-9B63-13D5D7FCA2C0}</ProjectGuid>
     <RootNamespace>t4IBLdiff</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>lab5</ProjectName>
+    <ProjectName>lab6</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -97,42 +97,29 @@
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
-
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
-
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
-
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
-
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
-
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
-
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
-
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
-
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
-
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
-
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
-
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
-
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
-
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
-
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-
+copy "$(ProjectDir)pbrLightable_VS.cso" "$(OutDir)pbrLightable_VS.cso"
+copy "$(ProjectDir)pbrLightable_PS.cso" "$(OutDir)pbrLightable_PS.cso"
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-
-copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
+copy "$(ProjectDir)wildflower_field_4k.hdr" "$(OutDir)wildflower_field_4k.hdr"
+mkdir "$(OutDir)model" 2&gt;nul
+xcopy "$(ProjectDir)model\*" "$(OutDir)model\" /E /I /Y
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,42 +140,29 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
-
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
-
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
-
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
-
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
-
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
-
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
-
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
-
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
-
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
-
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
-
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
-
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
-
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
-
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-
+copy "$(ProjectDir)pbrLightable_VS.cso" "$(OutDir)pbrLightable_VS.cso"
+copy "$(ProjectDir)pbrLightable_PS.cso" "$(OutDir)pbrLightable_PS.cso"
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-
-copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
+copy "$(ProjectDir)wildflower_field_4k.hdr" "$(OutDir)wildflower_field_4k.hdr"
+mkdir "$(OutDir)model" 2&gt;nul
+xcopy "$(ProjectDir)model\*" "$(OutDir)model\" /E /I /Y
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -208,42 +182,29 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     </FxCompile>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
-
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
-
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
-
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
-
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
-
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
-
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
-
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
-
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
-
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
-
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
-
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
-
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
-
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
-
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-
+copy "$(ProjectDir)pbrLightable_VS.cso" "$(OutDir)pbrLightable_VS.cso"
+copy "$(ProjectDir)pbrLightable_PS.cso" "$(OutDir)pbrLightable_PS.cso"
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-
-copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
+copy "$(ProjectDir)wildflower_field_4k.hdr" "$(OutDir)wildflower_field_4k.hdr"
+mkdir "$(OutDir)model" 2&gt;nul
+xcopy "$(ProjectDir)model\*" "$(OutDir)model\" /E /I /Y
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -264,42 +225,29 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)sphere_VS.cso" "$(OutDir)sphere_VS.cso"
-
 copy "$(ProjectDir)BrightnessCalc.cso" "$(OutDir)BrightnessCalc.cso"
-
 copy "$(ProjectDir)CMToIRRMGenerator_PS.cso" "$(OutDir)CMToIRRMGenerator_PS.cso"
-
 copy "$(ProjectDir)HDR.cso" "$(OutDir)HDR.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_PS.cso" "$(OutDir)HDRToCubeMap_PS.cso"
-
 copy "$(ProjectDir)HDRToCubeMap_VS.cso" "$(OutDir)HDRToCubeMap_VS.cso"
-
 copy "$(ProjectDir)sampling_PS.cso" "$(OutDir)sampling_PS.cso"
-
 copy "$(ProjectDir)screen_plane_VS.cso" "$(OutDir)screen_plane_VS.cso"
-
 copy "$(ProjectDir)no_lightning_PS.cso" "$(OutDir)no_lightning_PS.cso"
-
 copy "$(ProjectDir)no_lightning_VS.cso" "$(OutDir)no_lightning_VS.cso"
-
 copy "$(ProjectDir)skybox_VS.cso" "$(OutDir)skybox_VS.cso"
-
 copy "$(ProjectDir)skybox_PS.cso" "$(OutDir)skybox_PS.cso"
-
 copy "$(ProjectDir)box_PS.cso" "$(OutDir)box_PS.cso"
-
 copy "$(ProjectDir)box_VS.cso" "$(OutDir)box_VS.cso"
-
 copy "$(ProjectDir)IBLMapsGenerator_vs.cso" "$(OutDir)IBLMapsGenerator_vs.cso"
-
 copy "$(ProjectDir)CMToPrefilMGenerator_PS.cso" "$(OutDir)CMToPrefilMGenerator_PS.cso"
-
 copy "$(ProjectDir)BRDFGenerator_PS.cso" "$(OutDir)BRDFGenerator_PS.cso"
-
+copy "$(ProjectDir)pbrLightable_VS.cso" "$(OutDir)pbrLightable_VS.cso"
+copy "$(ProjectDir)pbrLightable_PS.cso" "$(OutDir)pbrLightable_PS.cso"
 copy "$(ProjectDir)PBRBuffers.hlsli" "$(OutDir)PBRBuffers.hlsli"
-
-copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street_night_4k.hdr"</Command>
+copy "$(ProjectDir)wildflower_field_4k.hdr" "$(OutDir)wildflower_field_4k.hdr"
+mkdir "$(OutDir)model" 2&gt;nul
+xcopy "$(ProjectDir)model\*" "$(OutDir)model\" /E /I /Y
+</Command>
     </PostBuildEvent>
     <FxCompile>
       <ObjectFileOutput>$(ProjectDir)%(Filename).cso</ObjectFileOutput>
@@ -314,7 +262,10 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClInclude Include="..\libs\ImGUI\imstb_rectpack.h" />
     <ClInclude Include="..\libs\ImGUI\imstb_textedit.h" />
     <ClInclude Include="..\libs\ImGUI\imstb_truetype.h" />
+    <ClInclude Include="..\libs\json.hpp" />
     <ClInclude Include="..\libs\stb_image.h" />
+    <ClInclude Include="..\libs\stb_image_write.h" />
+    <ClInclude Include="..\libs\tiny_gltf.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="common.h" />
@@ -322,6 +273,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="geomBox.h" />
     <ClInclude Include="geomSphere.h" />
+    <ClInclude Include="gltf_model.h" />
     <ClInclude Include="HDRCubeMapGenerator.h" />
     <ClInclude Include="IBLMapsGenerator.h" />
     <ClInclude Include="input.h" />
@@ -329,7 +281,6 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClInclude Include="light.h" />
     <ClInclude Include="materials.h" />
     <ClInclude Include="postprocessing.h" />
-    <ClInclude Include="rendered.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="renderTargetTexture.h" />
     <ClInclude Include="resource1.h" />
@@ -353,6 +304,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="geomBox.cpp" />
     <ClCompile Include="geomSphere.cpp" />
+    <ClCompile Include="gltf_model.cpp" />
     <ClCompile Include="HDRCubeMapGenerator.cpp" />
     <ClCompile Include="IBLMapsGenerator.cpp" />
     <ClCompile Include="input.cpp" />
@@ -360,7 +312,6 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="postprocessing.cpp" />
-    <ClCompile Include="rendered.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="renderTargetTexture.cpp" />
     <ClCompile Include="scene.cpp" />
@@ -371,7 +322,7 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="lab5.rc" />
+    <ResourceCompile Include="lab6.rc" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="box_PS.hlsl">
@@ -482,6 +433,26 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+    <FxCompile Include="pbrLightable_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="pbrLightable_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="sampling_PS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
@@ -513,26 +484,6 @@ copy "$(ProjectDir)cobblestone_street_night_4k.hdr" "$(OutDir)cobblestone_street
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="skybox_VS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="sphere_PS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="sphere_VS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

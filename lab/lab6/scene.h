@@ -16,6 +16,7 @@
 #include "light.h"
 #include "Sphere.h"
 #include "box.h"
+#include "gltf_model.h"
 #include "skybox.h"
 
 using namespace DirectX;
@@ -36,18 +37,13 @@ public:
 
   void RenderGUI();
 
-private:
-  
-#ifdef _DEBUG
-  ID3DUserDefinedAnnotation* pAnnotation = nullptr;
-#endif
-  PBRMaterial pbrMaterial;
-  PBRMode pbrMode;
-  IBLMode iblMode;
+private:  
   bool isOff = true;
   float intensity = 1.0f;
 
-  std::vector<Sphere> spheres;
+  Model model;
+  PBRRichMaterial pbrMaterial;
+  ViewMode viewMode;
   std::vector<Light> lights;
   Skybox sb;
   IBLMaps maps;

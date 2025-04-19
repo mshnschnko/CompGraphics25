@@ -79,13 +79,13 @@
     <ClCompile Include="IRRGenerator.cpp">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="rendered.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="IBLMapsGenerator.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="common.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf_model.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -177,14 +177,23 @@
     <ClInclude Include="IRRGenerator.h">
       <Filter>Исходные файлы\Scene\Skybox\IRRGenerator</Filter>
     </ClInclude>
-    <ClInclude Include="rendered.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="IBLMapsGenerator.h">
       <Filter>libs</Filter>
     </ClInclude>
     <ClInclude Include="common.h">
       <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\tiny_gltf.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf_model.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\json.hpp">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\stb_image_write.h">
+      <Filter>libs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -304,7 +313,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="lab5.rc">
+    <ResourceCompile Include="lab6.rc">
       <Filter>Файлы ресурсов</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -333,12 +342,6 @@
     <FxCompile Include="BrightnessCalc.hlsl">
       <Filter>Исходные файлы\Shaders\Postprocessing\Tonemapping</Filter>
     </FxCompile>
-    <FxCompile Include="sphere_PS.hlsl">
-      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
-    </FxCompile>
-    <FxCompile Include="sphere_VS.hlsl">
-      <Filter>Исходные файлы\Shaders\LightableModels\PBRColorObjs</Filter>
-    </FxCompile>
     <FxCompile Include="box_VS.hlsl">
       <Filter>Исходные файлы\Shaders\LightableModels\LightableObjs</Filter>
     </FxCompile>
@@ -363,6 +366,8 @@
     <FxCompile Include="BRDFGenerator_PS.hlsl">
       <Filter>Исходные файлы\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="pbrLightable_PS.hlsl" />
+    <FxCompile Include="pbrLightable_VS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lightCalc.hlsli">

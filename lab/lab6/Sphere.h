@@ -8,7 +8,6 @@
 
 #include "skybox.h"
 #include "materials.h"
-#include "rendered.h"
 #include "geomSphere.h"
 #include "D3DInclude.h"
 #include "input.h"
@@ -18,7 +17,15 @@
 
 using namespace DirectX;
 
-class Sphere : public Rendered, GeomSphere {
+enum class IBLMode : int
+{
+    full = 0,
+    diffuse = 1,
+    specular = 2,
+    nothing = 3,
+};
+
+class Sphere : public GeomSphere {
 public:
   Sphere() {};
 
